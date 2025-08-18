@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        .container{
+            margin: auto;
+            width: 50%;
+            padding: 30px;
+            background: #e2e2e2;
+        }
+    </style>
+</head>
+<body>
+   <div class="container">
+    <h1>Welcome to <span data-th-text="${appName}"></span></h1>
+    <h1>Application category: <span data-th-text="${appCategory}"></span></h1>
+    <h4>Github Repository : <span th:text="${githubRepo}"></span></h4>
+    <a th:href="${githubRepo}"> Click Here To Open</a>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod distinctio voluptates explicabo quia vitae incidunt, asperiores error ad minus consequuntur rem dignissimos, accusamus reprehenderit impedit dolorum soluta blanditiis libero nihil.</p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat nesciunt magni labore recusandae unde accusamus molestiae assumenda sunt deleniti odit!</p>
+
+   </div>
+    
+</body>
+</html>
