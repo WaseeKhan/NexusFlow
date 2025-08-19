@@ -16,4 +16,17 @@ public class PageController {
         return "home";
     }
 
+    @GetMapping("/about")
+    public String aboutPage(Model model){
+        model.addAttribute("isLogin", false);
+        System.out.println("About Page Handler");
+        return "about";
+    }
+
+    @GetMapping("/services")
+    public String servicesPage(){
+        System.out.println("Services Page Handler");
+        return "services";
+    }
+
 }

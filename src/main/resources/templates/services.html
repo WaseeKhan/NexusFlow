@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+</head>
+<body>
+    <h1>This is Services Page</h1>
+    <hr>
+    <!-- <div class="host-fragment" th:insert="~{base :: parent}"></div> -->
+     <div class="host-fragment" th:replace="~{base :: parent(~{:: .button})}">
+        <div id="service_content"> This is content from service
+            
+        </div>
+        <button class="button">Click Here</button>
+        
+     </div>
+    
+</body>
+</html>
