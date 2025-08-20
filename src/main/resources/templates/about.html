@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title})}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
+<title>NexusFlow - About</title>
 </head>
 <body>
-    <h1>This is About Page</h1>
-    <hr>
-    <!-- <div class="host-fragment" th:insert="~{base :: parent}"></div> -->
-     <div class="host-fragment" th:replace="${isLogin} ? ~{base :: parent(~{::section})} : ~{base :: test}">
-     <section> User is loggedIn This is content section</section>
-     </div>
-    
+    <div id="content">
+        <h1>Welcome to About Page</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut vitae exercitationem facilis nisi vero in amet illum sit accusamus reiciendis.</p>
+    </div>
 </body>
 </html>
