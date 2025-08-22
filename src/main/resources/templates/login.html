@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title})}">
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}">
 <head>
 <title>NexusFlow - Login</title>
 </head>
@@ -8,5 +8,8 @@
         <h1>Welcome to Login Page</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut vitae exercitationem facilis nisi vero in amet illum sit accusamus reiciendis.</p>
     </div>
+    <script>
+        console.log("Hello from login.html");
+     </script>
 </body>
 </html>
