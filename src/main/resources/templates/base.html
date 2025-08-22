@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" 
+<html class="light"
 lang="en" 
 th:fragment="parent(content, title, script)" xmlns:th="https://www.thymeleaf.org">
 <head>
@@ -8,9 +8,16 @@ th:fragment="parent(content, title, script)" xmlns:th="https://www.thymeleaf.org
     <title data-th-replace="${title}">NexusFlow</title>
     <link rel="stylesheet" th:href="@{'/css/output.css'}">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
-   
+   <script>
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark')
+    }
+</script>
 </head>
-<body>
+<body class="dark:bg-gray-900 dark:text-white" >
     <!-- Common Header  -->
      <div th:replace="navbar :: navbar"></div>
     <!-- main content here -->
@@ -24,5 +31,6 @@ th:fragment="parent(content, title, script)" xmlns:th="https://www.thymeleaf.org
     
      <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
      <script data-th-replace="${script}"></script>
+     <script th:src="@{'/js/mode.js'}"></script>
 </body>
 </html>
