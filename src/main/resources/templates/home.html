@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title})}">
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}" >
 <head>
 <title>NexusFlow - Home</title>
 </head>
 <body>
     <div id="content">
         <h1>Welcome to Home Page</h1>
+        <div class="bg-white dark:bg-black text-black dark:text-white">Test Dark Mode</div>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut vitae exercitationem facilis nisi vero in amet illum sit accusamus reiciendis.</p>
     </div>
+
+    <script>
+        console.log("Hello from Home.html");
+     </script>
 </body>
 </html>
