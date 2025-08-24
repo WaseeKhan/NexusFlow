@@ -1,11 +1,21 @@
 package com.nexusflow.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.nexusflow.entities.User;
+import com.nexusflow.forms.UserForm;
+import com.nexusflow.services.UserService;
 
 @Controller
 public class PageController {
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/home")
     public String home(Model model){
@@ -34,15 +44,54 @@ public class PageController {
         return "contact";
     }
 
+     @GetMapping("/careers")
+    public String careersPage(){
+        System.out.println("Careers Page Handler");
+        return "careers";
+    }
+    @GetMapping("/apply-job")
+    public String applyJobPage(){
+        System.out.println("Apply Job Page Handler");
+        return "apply-job";
+    }
+
      @GetMapping("/register")
-    public String registerPage(){
+    public String registerPage(Model model){
         System.out.println("Register Page Handler");
+        UserForm userForm = new UserForm();
+        //setting defalut values in form
+        // userForm.setName("Waseem");
+        // userForm.setAbout("This is about Waseem");
+        model.addAttribute("userForm", userForm);
         return "register";
     }
      @GetMapping("/login")
     public String loginPage(){
         System.out.println("Register Page Handler");
         return "login";
+    }
+
+    @PostMapping("/do-register")
+    public String doRegister(@ModelAttribute UserForm userForm){
+        System.out.println("Do Register Handler");
+        // fetch form data
+        // UserForm 
+        System.out.println(userForm);
+        // validate data 
+        // save to db 
+        User user = User.builder()
+        .name(userForm.getName())
+        .email(userForm.getEmail())
+        .password(userForm.getPassword())
+        .about(userForm.getAbout())
+        .phoneNumber(userForm.getPhoneNumber())
+        .profilePic("https://learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flcwd_logo.45da3818.png&w=1080&q=75")
+        .build();
+        User savedUser = userService.saveUser(user);
+        System.out.println("Saved User: "+ savedUser);
+        // message 
+        //redirect
+        return "redirect:/register";
     }
 
 }

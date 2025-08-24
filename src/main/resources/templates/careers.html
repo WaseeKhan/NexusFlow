@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}" >
+<head>
+<title>NexusFlow - Careers</title>
+</head>
+<body>
+    <div id="content">
+      <section class="bg-white dark:bg-gray-900">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+    <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Careers at NexusFlow</h2>
+      <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Join a team of innovators and problem-solvers. We're building the future of technology, and we'd love for you to be a part of our journey.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="flex flex-col items-center justify-center p-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg">
+        <svg class="w-10 h-10 mb-2 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"/></svg>
+        <h3 class="text-lg font-bold text-white">Innovation</h3>
+        <p class="text-sm text-gray-100 text-center mt-2">Work on cutting-edge projects that push the industry forward.</p>
+      </div>
+      <div class="flex flex-col items-center justify-center p-6 bg-gradient-to-r from-purple-600 to-orange-500 rounded-lg shadow-lg">
+        <svg class="w-10 h-10 mb-2 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"/></svg>
+        <h3 class="text-lg font-bold text-white">Growth</h3>
+        <p class="text-sm text-gray-100 text-center mt-2">We invest in your professional development and provide clear career paths.</p>
+      </div>
+      <div class="flex flex-col items-center justify-center p-6 bg-gradient-to-r from-orange-500 to-blue-500 rounded-lg shadow-lg">
+        <svg class="w-10 h-10 mb-2 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"/></svg>
+        <h3 class="text-lg font-bold text-white">Teamwork</h3>
+        <p class="text-sm text-gray-100 text-center mt-2">Join a collaborative and supportive environment where everyone's voice matters.</p>
+      </div>
+      <div class="flex flex-col items-center justify-center p-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg">
+        <svg class="w-10 h-10 mb-2 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"/></svg>
+        <h3 class="text-lg font-bold text-white">Impact</h3>
+        <p class="text-sm text-gray-100 text-center mt-2">Your work will have a tangible impact on our products and our customers' lives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="bg-gray-50 dark:bg-gray-800 py-8 px-4 lg:py-16 lg:px-6">
+  <div class="container mx-auto max-w-screen-xl">
+    <h2 class="mb-8 text-3xl font-extrabold text-gray-900 dark:text-white">Current Openings</h2>
+    
+    <div id="accordion-collapse" data-accordion="collapse">
+      <h2 id="accordion-collapse-heading-1">
+        <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
+          <span>Senior Full-Stack Engineer </span><span>Job Code: NF001</span>
+          <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </h2>
+      <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
+        <div class="p-5 font-light border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+          <p class="mb-2 text-gray-500 dark:text-gray-400">We are seeking a talented Senior Full-Stack Engineer to join our growing team. You will be responsible for designing, implementing, and maintaining both the front-end and back-end of our applications.</p>
+          <a th:href="@{'/apply-job'}" class="inline-flex items-center text-blue-600 dark:text-blue-500 font-medium hover:underline">Apply Now <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 14a4 4 0 100-8 4 4 0 000 8z" clip-rule="evenodd" fill-rule="evenodd"></path><path d="M2 10a8 8 0 1116 0 8 8 0 01-16 0zm8-6a6 6 0 100 12A6 6 0 0010 4z" clip-rule="evenodd" fill-rule="evenodd"></path></svg></a>
+        </div>
+      </div>
+      
+      <h2 id="accordion-collapse-heading-2">
+        <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
+          <span>Lead - Java Developer</span><span>Job Code: NF002</span>
+          <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </h2>
+      <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
+        <div class="p-5 font-light border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+          <p class="mb-2 text-gray-500 dark:text-gray-400">We're looking for a passionate Java Sprinbg Boot Back-end Developer to lead the development of new features and products. You'll work with engineering, Bussiness, and sales to define and deliver our product roadmap.</p>
+          <a th:href="@{'/apply-job'}" class="inline-flex items-center text-blue-600 dark:text-blue-500 font-medium hover:underline">Apply Now <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 14a4 4 0 100-8 4 4 0 000 8z" clip-rule="evenodd" fill-rule="evenodd"></path><path d="M2 10a8 8 0 1116 0 8 8 0 01-16 0zm8-6a6 6 0 100 12A6 6 0 0010 4z" clip-rule="evenodd" fill-rule="evenodd"></path></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <script>
+        console.log("Hello from Careers.html");
+     </script>
+</body>
+</html>
