@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.nexusflow.entities.User;
 import com.nexusflow.forms.UserForm;
+import com.nexusflow.helpers.Message;
+import com.nexusflow.helpers.MessageType;
 import com.nexusflow.services.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class PageController {
@@ -72,24 +76,34 @@ public class PageController {
     }
 
     @PostMapping("/do-register")
-    public String doRegister(@ModelAttribute UserForm userForm){
+    public String doRegister(@ModelAttribute UserForm userForm, HttpSession session){
         System.out.println("Do Register Handler");
         // fetch form data
         // UserForm 
         System.out.println(userForm);
         // validate data 
         // save to db 
-        User user = User.builder()
-        .name(userForm.getName())
-        .email(userForm.getEmail())
-        .password(userForm.getPassword())
-        .about(userForm.getAbout())
-        .phoneNumber(userForm.getPhoneNumber())
-        .profilePic("https://learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flcwd_logo.45da3818.png&w=1080&q=75")
-        .build();
+        // User user = User.builder()
+        // .name(userForm.getName())
+        // .email(userForm.getEmail())
+        // .password(userForm.getPassword())
+        // .about(userForm.getAbout())
+        // .phoneNumber(userForm.getPhoneNumber())
+        // .profilePic("https://learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flcwd_logo.45da3818.png&w=1080&q=75")
+        // .build();
+        User user = new User();
+        user.setName(userForm.getName());
+        user.setEmail(userForm.getEmail());
+        user.setPassword(userForm.getPassword());
+        user.setAbout(userForm.getAbout());
+        user.setPhoneNumber(userForm.getPhoneNumber());
+        user.setProfilePic("https://learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flcwd_logo.45da3818.png&w=1080&q=75");  
+        
         User savedUser = userService.saveUser(user);
         System.out.println("Saved User: "+ savedUser);
         // message 
+        Message message = Message.builder().content("Registration Successful !! Please Login..").type(MessageType.blue).build();
+        session.setAttribute("message", message);
         //redirect
         return "redirect:/register";
     }
