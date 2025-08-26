@@ -7,14 +7,16 @@ import java.util.UUID;
 import org.hibernate.validator.internal.util.logging.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.nexusflow.entities.User;
+import com.nexusflow.helpers.AppConstant;
 import com.nexusflow.helpers.ResourceNotFoundException;
 import com.nexusflow.repositories.UserRepository;
 import com.nexusflow.services.UserService;
 
-import jakarta.annotation.Resource;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,13 +24,18 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     private Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
 
     @Override
     public User saveUser(User user) {
         String userId = UUID.randomUUID().toString();
          user.setUserId(userId);
-    
+         user.setPassword(passwordEncoder.encode(user.getPassword()));
+         user.setRoleList(List.of(AppConstant.ROLE_USER));
+        logger.info(user.getProvider().toString());
         return userRepository.save(user);
     }
 
