@@ -1,6 +1,7 @@
 package com.nexusflow.services.impl;
 
 import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,7 +13,7 @@ import com.nexusflow.repositories.UserRepository;
 @Service
 public class SecurityCustomUserDetailsService implements UserDetailsService{
 
-    @AutoConfigureOrder
+    @Autowired
     private UserRepository  userRepository;
 
     @Override

@@ -4,12 +4,16 @@ package com.nexusflow.config;
 import java.security.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties.Http;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 import com.nexusflow.services.impl.SecurityCustomUserDetailsService;
 
@@ -47,11 +51,42 @@ public class SecurityConfig {
         return daoAuthenticationProvider;
     }
 
+
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+
+        httpSecurity.authorizeHttpRequests(authorize->{
+            // authorize.requestMatchers("/home", "/register").permitAll();
+
+            authorize.requestMatchers("/user/**").authenticated(); //is url pattern per login ya signup krna hoga
+            authorize.anyRequest().permitAll(); //rest url sab open hoga
+
+        });
+        // form defualt login 
+        // form login se related changes yaha pr krna hoga
+        httpSecurity.formLogin(formLogin->{
+            formLogin.loginPage("/login");
+            formLogin.loginProcessingUrl("/do-login");
+            formLogin.defaultSuccessUrl("/user/dashboard");
+            formLogin.failureUrl("/login?error=true");
+            formLogin.usernameParameter("email");
+            formLogin.passwordParameter("password");
+            
+        });
+        httpSecurity.csrf().disable();
+        httpSecurity.logout(logoutForm->{
+            logoutForm.logoutUrl("/logout");
+            logoutForm.logoutSuccessUrl("/login?logout=true");
+        });
+        return httpSecurity.build();
+    }
 
 
 }

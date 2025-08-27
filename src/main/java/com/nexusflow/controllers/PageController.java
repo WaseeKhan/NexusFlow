@@ -23,6 +23,11 @@ public class PageController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/")
+    public String index(){
+        return "redirect:/home";
+    }
+
     @GetMapping("/home")
     public String home(Model model){
         System.out.println("Home Page Handler");
@@ -73,7 +78,7 @@ public class PageController {
     }
      @GetMapping("/login")
     public String loginPage(){
-        System.out.println("Register Page Handler");
+        System.out.println("Login Page Handler");
         return "login";
     }
 
