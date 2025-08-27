@@ -9,6 +9,7 @@ th:fragment="parent(content, title, script)" xmlns:th="https://www.thymeleaf.org
     <link rel="icon" type="image/png" th:href="@{'/images/favicon_logo.png'}" />
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" th:href="@{'/css/output.css'}">
+    <link rel="stylesheet" th:href="@{'/css/style.css'}">
    <script>
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {

@@ -1,6 +1,7 @@
 package com.nexusflow.config;
 
 
+import java.io.IOException;
 import java.security.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,17 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.nexusflow.services.impl.SecurityCustomUserDetailsService;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 public class SecurityConfig {
@@ -42,6 +49,9 @@ public class SecurityConfig {
 
     @Autowired
     private SecurityCustomUserDetailsService securityCustomUserDetailsService; 
+
+    @Autowired
+    private OAuthAuthenticationSucessHandler handler;
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
@@ -84,6 +94,15 @@ public class SecurityConfig {
         httpSecurity.logout(logoutForm->{
             logoutForm.logoutUrl("/logout");
             logoutForm.logoutSuccessUrl("/login?logout=true");
+        });
+        httpSecurity.oauth2Login(oauth->{
+            oauth.loginPage("/login");
+            oauth.defaultSuccessUrl("/user/dashboard");
+            oauth.failureUrl("/login?error=true");
+            oauth.successHandler(handler);
+
+               
+              
         });
         return httpSecurity.build();
     }
