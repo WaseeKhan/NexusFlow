@@ -60,11 +60,11 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-The application will start on [http://localhost:8080](http://localhost:8080).
+The application will start on [http://localhost:8080/home](http://localhost:8080/home).
 
 ### 6. Access the Application
 
-- Visit [http://localhost:8080](http://localhost:8080) in your browser.
+- Visit [http://localhost:8080/home](http://localhost:8080/home) in your browser.
 - Register a new user or use OAuth2 login (Google/GitHub).
 
 ## Common Commands
