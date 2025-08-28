@@ -7,6 +7,15 @@
 </head>
 <body>
     <h1>user dashboard</h1>
+    <h2 th:text="${loggedInUser.name}"></h2>
+    <h3 th:text="${loggedInUser.email}"></h3>
+
+    <div th:if="${loggedInUser}">
+        <p>Welcome, <span th:text="${loggedInUser.name}"></span>!</p>
+        <p>Your email is: <span th:text="${loggedInUser.email}">
+        
+    </div>
     <a th:href="@{'/logout'}">Logout</a>
+    
 </body>
 </html>

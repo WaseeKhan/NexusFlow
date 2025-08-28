@@ -6,7 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>this is user profile</h1>
+    <h1>Welcome to Profile Page</h1>
+    <h2 th:text="${loggedInUser.name}"></h2>
+    <h3 th:text="${loggedInUser.email}"></h3>
      <a th:href="@{'/logout'}">Logout</a>
 </body>
 </html>
