@@ -23,19 +23,21 @@ public class RootController {
         @ModelAttribute
         public void addLoggedInUserInformation(Model model, Authentication authentication){
             if (authentication ==null) {
-                System.out.println("No authenticated user, returing null");
+                // System.out.println("No authenticated user, returing null");
+                // logger.info("You're viewing application as guest user, please login and explore more.");
                 return;
                 
             }
         System.out.println("addLoggedInUserInformation to the model");
         String username = Helper.getEmailOfLoggedInUser(authentication);
-        logger.info("User loggedIn: {}", username);
+        logger.info("User loggedIn: {}: ", username);
         User user = userService.getUserByEmail(username);
 
             System.out.println(user);
             System.out.println("Logged in user found: " + user.getEmail());
-             System.out.println(user.getName());
+            System.out.println(user.getName());
             System.out.println(user.getEmail());
+           
             model.addAttribute("loggedInUser", user);
         
        

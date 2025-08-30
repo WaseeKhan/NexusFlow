@@ -12,6 +12,7 @@
     --color-red-700: oklch(50.5% 0.213 27.518);
     --color-red-800: oklch(44.4% 0.177 26.899);
     --color-orange-500: oklch(70.5% 0.213 47.604);
+    --color-green-300: oklch(87.1% 0.15 154.449);
     --color-green-600: oklch(62.7% 0.194 149.214);
     --color-green-700: oklch(52.7% 0.154 150.069);
     --color-blue-300: oklch(80.9% 0.105 251.813);
@@ -333,11 +334,11 @@
   .h-10 {
     height: calc(var(--spacing) * 10);
   }
-  .h-14 {
-    height: calc(var(--spacing) * 14);
-  }
   .h-16 {
     height: calc(var(--spacing) * 16);
+  }
+  .h-18 {
+    height: calc(var(--spacing) * 18);
   }
   .w-1\/2 {
     width: calc(1/2 * 100%);
@@ -354,11 +355,8 @@
   .w-10 {
     width: calc(var(--spacing) * 10);
   }
-  .w-14 {
-    width: calc(var(--spacing) * 14);
-  }
-  .w-16 {
-    width: calc(var(--spacing) * 16);
+  .w-18 {
+    width: calc(var(--spacing) * 18);
   }
   .w-full {
     width: 100%;
@@ -475,6 +473,10 @@
     border-top-style: var(--tw-border-style);
     border-top-width: 8px;
   }
+  .border-t-10 {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 10px;
+  }
   .border-b {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
@@ -483,11 +485,11 @@
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 0px;
   }
+  .border-\[\#008080\] {
+    border-color: #008080;
+  }
   .border-blue-700 {
     border-color: var(--color-blue-700);
-  }
-  .border-blue-800 {
-    border-color: var(--color-blue-800);
   }
   .border-gray-100 {
     border-color: var(--color-gray-100);
@@ -503,6 +505,12 @@
   }
   .border-green-700 {
     border-color: var(--color-green-700);
+  }
+  .bg-\[\#673AB7\] {
+    background-color: #673AB7;
+  }
+  .bg-\[\#E91E63\] {
+    background-color: #E91E63;
   }
   .bg-blue-600 {
     background-color: var(--color-blue-600);
@@ -521,9 +529,6 @@
   }
   .bg-gray-600 {
     background-color: var(--color-gray-600);
-  }
-  .bg-red-700 {
-    background-color: var(--color-red-700);
   }
   .bg-white {
     background-color: var(--color-white);
@@ -775,6 +780,13 @@
       }
     }
   }
+  .hover\:bg-\[\#F57F17\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: #F57F17;
+      }
+    }
+  }
   .hover\:bg-blue-600 {
     &:hover {
       @media (hover: hover) {
@@ -814,13 +826,6 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-gray-700);
-      }
-    }
-  }
-  .hover\:bg-red-800 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-red-800);
       }
     }
   }
@@ -1151,6 +1156,11 @@
       }
     }
   }
+  .dark\:border-\[\#483D8B\] {
+    &:where(.dark, .dark *) {
+      border-color: #483D8B;
+    }
+  }
   .dark\:border-gray-600 {
     &:where(.dark, .dark *) {
       border-color: var(--color-gray-600);
@@ -1159,6 +1169,16 @@
   .dark\:border-gray-700 {
     &:where(.dark, .dark *) {
       border-color: var(--color-gray-700);
+    }
+  }
+  .dark\:bg-\[\#673AB7\] {
+    &:where(.dark, .dark *) {
+      background-color: #673AB7;
+    }
+  }
+  .dark\:bg-\[\#E91E63\] {
+    &:where(.dark, .dark *) {
+      background-color: #E91E63;
     }
   }
   .dark\:bg-black {
@@ -1184,11 +1204,6 @@
   .dark\:bg-gray-900 {
     &:where(.dark, .dark *) {
       background-color: var(--color-gray-900);
-    }
-  }
-  .dark\:bg-red-600 {
-    &:where(.dark, .dark *) {
-      background-color: var(--color-red-600);
     }
   }
   .dark\:text-blue-500 {
@@ -1245,15 +1260,6 @@
       }
     }
   }
-  .dark\:hover\:bg-red-700 {
-    &:where(.dark, .dark *) {
-      &:hover {
-        @media (hover: hover) {
-          background-color: var(--color-red-700);
-        }
-      }
-    }
-  }
   .dark\:hover\:text-white {
     &:where(.dark, .dark *) {
       &:hover {
@@ -1302,13 +1308,6 @@
     &:where(.dark, .dark *) {
       &:focus {
         --tw-ring-color: var(--color-gray-800);
-      }
-    }
-  }
-  .dark\:focus\:ring-red-800 {
-    &:where(.dark, .dark *) {
-      &:focus {
-        --tw-ring-color: var(--color-red-800);
       }
     }
   }
