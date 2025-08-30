@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<title th:text="${loggedInUser.name}+ ' - NexusFlow' "> </title>
 </head>
 <body>
-    <h1>Welcome to Profile Page</h1>
-    <h2 th:text="${loggedInUser.name}"></h2>
-    <h3 th:text="${loggedInUser.email}"></h3>
-     <a th:href="@{'/logout'}">Logout</a>
+    <div id="content">
+        <h1>Welcome to Profile Page</h1>
+        
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut vitae exercitationem facilis nisi vero in amet illum sit accusamus reiciendis.</p>
+    </div>
+
+    <script>
+        console.log("Hello from profile.html");
+     </script>
 </body>
 </html>
