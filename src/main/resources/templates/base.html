@@ -20,12 +20,7 @@ th:fragment="parent(content, title, script)" xmlns:th="https://www.thymeleaf.org
         <div th:replace="~{user/user_navbar :: user-navbar}"></div>
     </div>
 
-    <!-- agar user login hai to ye siderbar show hoga -->
-
-    <div th:if="${loggedInUser}">
-        <div th:replace="~{user/sidebar :: sidebar}"></div>
-    </div>
-
+    
 
     <!-- aur agar user login nahi hai to navbar show hoga -->
 <div th:unless="${loggedInUser}">
@@ -38,7 +33,7 @@ th:fragment="parent(content, title, script)" xmlns:th="https://www.thymeleaf.org
      </div>
 
      <!-- Footer  -->
-     <div th:replace="~{footer :: footer}"></div>
+     <!-- <div th:replace="~{footer :: footer}"></div> -->
 
     
      <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>

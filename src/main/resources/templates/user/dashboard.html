@@ -1,21 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<title th:text="${loggedInUser.name}+ ' - NexusFlow | Dashboard' "> </title>
 </head>
 <body>
-    <h1>user dashboard</h1>
-    <h2 th:text="${loggedInUser.name}"></h2>
-    <h3 th:text="${loggedInUser.email}"></h3>
+    <div id="content">
+        <!-- agar user login hai to ye siderbar show hoga -->
 
     <div th:if="${loggedInUser}">
-        <p>Welcome, <span th:text="${loggedInUser.name}"></span>!</p>
-        <p>Your email is: <span th:text="${loggedInUser.email}">
-        
+        <div th:replace="~{user/sidebar :: sidebar}"></div>
     </div>
-    <a th:href="@{'/logout'}">Logout</a>
-    
+
+        <div class="pl-64 pt-20 h-1000" >
+            <div class="text-center">
+                <h1 class="font-bold text-3xl">Welcome to Dashboard</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe reprehenderit dolorum odit vel reiciendis aliquam!</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis ad debitis animi beatae. Doloremque sed ipsum earum vitae molestiae voluptate, minus voluptatum cumque quisquam architecto odio exercitationem reprehenderit suscipit soluta fugit recusandae nobis, corrupti totam tempore aliquam, alias asperiores est enim! Facere distinctio possimus accusantium enim beatae sed corporis vel.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        console.log("Hello from profile.html");
+     </script>
 </body>
 </html>

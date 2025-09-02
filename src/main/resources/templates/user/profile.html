@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}" >
 <head>
-<title th:text="${loggedInUser.name}+ ' - NexusFlow' "> </title>
+<title th:text="${loggedInUser.name}+ ' - NexusFlow | Profile' "> </title>
 </head>
 <body>
     <div id="content">
-        <h1>Welcome to Profile Page</h1>
-        
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut vitae exercitationem facilis nisi vero in amet illum sit accusamus reiciendis.</p>
+        <div th:if="${loggedInUser}">
+        <div th:replace="~{user/sidebar :: sidebar}"></div>
     </div>
+
+        <div class="pl-64 pt-20 h-1000">
+            <div class="text-center">
+                <h1 class="text-3xl font-bold">Welcome to Profile </h1>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos placeat aut necessitatibus expedita soluta doloremque explicabo ut ad eveniet nesciunt, qui cumque incidunt, ratione molestias veritatis debitis! Laboriosam maiores dicta, repellendus maxime quis saepe! Cumque cupiditate sit error recusandae consequuntur porro eligendi nulla. Ipsa dolorum quisquam laboriosam quas? Harum, eveniet!</p>
+            </div>
+        </div>
+    </div>
+    
 
     <script>
         console.log("Hello from profile.html");
