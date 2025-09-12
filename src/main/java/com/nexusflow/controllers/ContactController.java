@@ -19,6 +19,7 @@ import com.nexusflow.helpers.Helper;
 import com.nexusflow.helpers.Message;
 import com.nexusflow.helpers.MessageType;
 import com.nexusflow.services.ContactService;
+import com.nexusflow.services.ImageService;
 import com.nexusflow.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -34,6 +35,9 @@ public class ContactController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ImageService imageService;
 
     Logger logger = LoggerFactory.getLogger(ContactController.class);
 
@@ -64,9 +68,12 @@ public class ContactController {
             return "user/add_contact";
         }
 
-        //image related 
+        //image related nprocessing
+
 
         logger.info("File Information : {} ", contactForm.getContactImage().getOriginalFilename());
+
+        String fileURL = imageService.uploadImage(contactForm.getContactImage());
         
         Contact contact = new Contact();
         String username = Helper.getEmailOfLoggedInUser(authentication);
@@ -81,6 +88,7 @@ public class ContactController {
         contact.setWebsiteLink(contactForm.getWebsiteLink());
         contact.setPhoneNumber(contactForm.getPhoneNumber());
         contact.setUser(user);
+        contact.setPicture(fileURL);
         // contactService.saveContact(contact);
 
         System.out.println("saveContacts invoked");
