@@ -1,5 +1,7 @@
 package com.nexusflow.controllers;
 
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,8 +74,10 @@ public class ContactController {
 
 
         logger.info("File Information : {} ", contactForm.getContactImage().getOriginalFilename());
+       
+        String filename = UUID.randomUUID().toString();
 
-        String fileURL = imageService.uploadImage(contactForm.getContactImage());
+        String fileURL = imageService.uploadImage(contactForm.getContactImage(), filename);
         
         Contact contact = new Contact();
         String username = Helper.getEmailOfLoggedInUser(authentication);
@@ -89,7 +93,8 @@ public class ContactController {
         contact.setPhoneNumber(contactForm.getPhoneNumber());
         contact.setUser(user);
         contact.setPicture(fileURL);
-        // contactService.saveContact(contact);
+        contact.setCloudinaryImagePublicId(filename);
+        contactService.saveContact(contact);
 
         System.out.println("saveContacts invoked");
         System.out.println(contactForm);
