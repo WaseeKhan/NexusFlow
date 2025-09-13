@@ -1,5 +1,6 @@
 package com.nexusflow.controllers;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -104,6 +105,17 @@ public class ContactController {
             .build()
             );
         return "redirect:/user/contacts/add";
+    }
+
+    @GetMapping
+    public String viewContact(Model model,  Authentication authentication){
+
+        String username = Helper.getEmailOfLoggedInUser(authentication);
+
+        User user = userService.getUserByEmail(username);
+        List<Contact> contacts = contactService.getContactByUser(user);
+        model.addAttribute("contacts", contacts);
+        return "user/contacts";
     }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nexusflow.entities.Contact;
+import com.nexusflow.entities.User;
 import com.nexusflow.helpers.ResourceNotFoundException;
 import com.nexusflow.repositories.ContactRepository;
 import com.nexusflow.services.ContactService;
@@ -55,6 +56,11 @@ public class ContactServiceImpl  implements ContactService{
     @Override
     public List<Contact> getContactByUserId(String userId) {
        return contactRepository.findByUserId(userId);
+    }
+
+    @Override
+    public List<Contact> getContactByUser(User user) {
+        return contactRepository.findByUser(user);
     }
 
 }
