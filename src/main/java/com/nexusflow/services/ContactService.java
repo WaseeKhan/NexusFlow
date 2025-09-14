@@ -2,6 +2,9 @@ package com.nexusflow.services;
 
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Page;
+
 import com.nexusflow.entities.Contact;
 import com.nexusflow.entities.User;
 
@@ -21,7 +24,7 @@ public interface ContactService {
 
     List<Contact> getContactByUserId(String userId);
 
-    List<Contact> getContactByUser(User user);
+    Page<Contact> getContactByUser(User user, int page , int size, String sortField, String sortDirection);
 
 
 

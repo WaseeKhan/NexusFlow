@@ -75,7 +75,7 @@
                         <tbody>
                             <tr 
                             th:object="${contact}"
-                            th:each="contact : ${contacts}"
+                            th:each="contact : ${pageContacts.getContent()}"
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 
                                 <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
@@ -96,13 +96,14 @@
                                         <!-- <div 
                                         th:if="*{favorite}"
                                         class="h-2.5 w-2.5 rounded-full bg-green-500 me-2 "></div>  -->
-                                        <span
+                                        <span 
+                                            class="p-1"
                                             th:if="*{favorite}">
                                             <i class="fa-solid fa-star"></i>
                                         </span>
                                         
-                                        <a th:href="@{*{linkedInLink}}" target="_blank" class="p-2"><i class="fa-brands fa-linkedin-in"></i></a>
-                                        <a th:href="@{*{websiteLink}}" target="_blank" class="p-2"><i class="fa-solid fa-link"></i></i></a>
+                                        <a th:href="@{*{linkedInLink}}" target="_blank" class="p-1"><i class="fa-brands fa-linkedin-in"></i></a>
+                                        <a th:href="@{*{websiteLink}}" target="_blank" class="p-1"><i class="fa-solid fa-link"></i></i></a>
                                    
                                 </td>
                                 <td class="px-6 py-4">
@@ -125,6 +126,38 @@
                             
                         </tbody>
                     </table>
+
+                    <!-- pagination component  -->
+                     <div class="pagination_container p-5 text-center">
+                        <nav aria-label="Page navigation example">
+                        <ul class="inline-flex -space-x-px text-base h-10">
+                            <li th:unless="${pageContacts.first}">
+                            <a 
+                            th:href="@{'/user/contacts?size='+${pageSize}+'&page='+${pageContacts.number-1}}" 
+                            class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                            </li>
+
+                            <li th:each="index : ${#numbers.sequence(0, pageContacts.totalPages-1)}">
+                                <!-- need some fix here  -->
+                            <a 
+                                th:href="@{'/user/contacts?size='+${pageSize}+'&page='+${index}}" 
+                                th:classappend="${index==pageContacts.number? 'bg-blue-200' : 'bg-white'}"
+                                class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <span th:text="${index+1}"></span>
+                            </a>
+                            </li>
+                            
+                            
+                           
+                            
+                            <li th:unless="${pageContacts.last}"></li>
+                            <a 
+                            th:href="@{'/user/contacts?size='+${pageSize}+'&page='+${pageContacts.number+1}}" 
+                            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                            </li>
+                        </ul>
+                        </nav>
+                     </div>
                 </div>
           
 
