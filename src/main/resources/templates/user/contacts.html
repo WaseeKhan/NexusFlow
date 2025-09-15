@@ -19,8 +19,9 @@
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
                   <form 
-                  th:action="@{'/user/contacts/search'}">
-
+                  th:action="@{'/user/contacts/search'}"
+                  th:object="${contactSearchForm}">
+                    
                       <div class="flex space-x-3 p-5 items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
                        
                         
@@ -30,10 +31,10 @@
                              <div class="w-sm">
                                
                                 <select 
-                                name="field"
+                                th:field="*{field}"
                                 id="countries" 
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="" disabled selected>Select Field</option>
+                                    <option value="" selected>Select Field</option>
                                     <option value="name">name</option>
                                     <option value="email">email</option>
                                     <option value="phone">phone</option>
@@ -47,7 +48,7 @@
                                     </svg>
                                 </div>
                                 <input 
-                                name="keyword"
+                                th:field="*{value}"
                                 type="text" id="table-search-users" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for users">
 
                                 

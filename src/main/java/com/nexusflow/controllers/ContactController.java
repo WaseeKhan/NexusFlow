@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.nexusflow.entities.Contact;
 import com.nexusflow.entities.User;
 import com.nexusflow.forms.ContactForm;
+import com.nexusflow.forms.ContactSearchForm;
 import com.nexusflow.helpers.AppConstant;
 import com.nexusflow.helpers.Helper;
 import com.nexusflow.helpers.Message;
@@ -118,6 +119,7 @@ public class ContactController {
         Page<Contact> pageContacts = contactService.getContactByUser(user, page, size, sortBy, direction);
         model.addAttribute("pageContacts", pageContacts);
         model.addAttribute("pageSize", AppConstant.PAGE_SIZE);
+        model.addAttribute("contactSearchForm", new ContactSearchForm());
         return "user/contacts";
     }
 
@@ -125,31 +127,31 @@ public class ContactController {
 
     @GetMapping("/search")
     public String searchHandler(
-            @RequestParam("field") String field,
-            @RequestParam("keyword") String value,
+            @ModelAttribute ContactSearchForm contactSearchForm,
             @RequestParam(value = "size", defaultValue = AppConstant.PAGE_SIZE + "") int size,
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
             @RequestParam(value = "direction", defaultValue = "asc") String direction,
             Model model,
             Authentication authentication) {
-        logger.info("field {} keyword {}", field, value);
+        logger.info("field {} keyword {}", contactSearchForm.getField(), contactSearchForm.getValue());
 
         User user = userService.getUserByEmail(Helper.getEmailOfLoggedInUser(authentication));
         Page<Contact> pageContacts = null;
 
-        if (field.equalsIgnoreCase("name")) {
-            pageContacts = contactService.searchByName(value, size, page, sortBy, direction,user);
-        } else if (field.equalsIgnoreCase("email")) {
-            pageContacts = contactService.searchByEmail(value, size, page, sortBy, direction,user);
+        if (contactSearchForm.getField().equalsIgnoreCase("name")) {
+            pageContacts = contactService.searchByName(contactSearchForm.getValue(), size, page, sortBy, direction,user);
+        } else if (contactSearchForm.getField().equalsIgnoreCase("email")) {
+            pageContacts = contactService.searchByEmail(contactSearchForm.getValue(), size, page, sortBy, direction,user);
 
-        } else if (field.equalsIgnoreCase("phone")) {
-            pageContacts = contactService.searchByPhoneNumber(value, size, page, sortBy, direction,user);
+        } else if (contactSearchForm.getField().equalsIgnoreCase("phone")) {
+            pageContacts = contactService.searchByPhoneNumber(contactSearchForm.getValue(), size, page, sortBy, direction,user);
 
         }
         logger.info("pageContacts {}", pageContacts);
+        model.addAttribute("contactSearchForm", contactSearchForm);
         model.addAttribute("pageContacts", pageContacts);
-
+         model.addAttribute("pageSize", AppConstant.PAGE_SIZE);
         return "user/search";
     }
 
