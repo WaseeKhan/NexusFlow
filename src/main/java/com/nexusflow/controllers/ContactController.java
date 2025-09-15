@@ -1,8 +1,6 @@
 package com.nexusflow.controllers;
 
-import java.util.List;
 import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +29,6 @@ import com.nexusflow.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
-
 @Controller
 @RequestMapping("/user/contacts")
 public class ContactController {
@@ -47,9 +44,8 @@ public class ContactController {
 
     Logger logger = LoggerFactory.getLogger(ContactController.class);
 
-
     @GetMapping("/add")
-    public String addContactView(Model model){
+    public String addContactView(Model model) {
 
         ContactForm contactForm = new ContactForm();
         model.addAttribute("contactForm", contactForm);
@@ -60,29 +56,28 @@ public class ContactController {
     }
 
     @PostMapping("/add")
-    public String saveContacts( @Valid @ModelAttribute ContactForm contactForm, BindingResult result, Authentication authentication, HttpSession session){
+    public String saveContacts(@Valid @ModelAttribute ContactForm contactForm, BindingResult result,
+            Authentication authentication, HttpSession session) {
 
         // Need to implements validation later here
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             // result.getAllErrors().forEach(error->logger.info(error.toString()));
 
             session.setAttribute("message", Message.builder()
-            .content("Please correct the following error(s)")
-            .type(MessageType.red)
-            .build()
-            );
+                    .content("Please correct the following error(s)")
+                    .type(MessageType.red)
+                    .build());
             return "user/add_contact";
         }
 
-        //image related nprocessing
-
+        // image related nprocessing
 
         logger.info("File Information : {} ", contactForm.getContactImage().getOriginalFilename());
-       
+
         String filename = UUID.randomUUID().toString();
 
         String fileURL = imageService.uploadImage(contactForm.getContactImage(), filename);
-        
+
         Contact contact = new Contact();
         String username = Helper.getEmailOfLoggedInUser(authentication);
         User user = userService.getUserByEmail(username);
@@ -103,20 +98,19 @@ public class ContactController {
         System.out.println("saveContacts invoked");
         System.out.println(contactForm);
         session.setAttribute("message", Message.builder()
-            .content("You have successfully added new contact")
-            .type(MessageType.green)
-            .build()
-            );
+                .content("You have successfully added new contact")
+                .type(MessageType.green)
+                .build());
         return "redirect:/user/contacts/add";
     }
 
     @GetMapping
     public String viewContact(
-    @RequestParam(value = "page", defaultValue = "0") int page,
-    @RequestParam(value = "size", defaultValue = AppConstant.PAGE_SIZE+"") int size,
-    @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
-    @RequestParam(value = "direction" , defaultValue = "asc") String direction,   
-    Model model,  Authentication authentication){
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = AppConstant.PAGE_SIZE + "") int size,
+            @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction,
+            Model model, Authentication authentication) {
 
         String username = Helper.getEmailOfLoggedInUser(authentication);
 
@@ -125,6 +119,38 @@ public class ContactController {
         model.addAttribute("pageContacts", pageContacts);
         model.addAttribute("pageSize", AppConstant.PAGE_SIZE);
         return "user/contacts";
+    }
+
+    // search handler
+
+    @GetMapping("/search")
+    public String searchHandler(
+            @RequestParam("field") String field,
+            @RequestParam("keyword") String value,
+            @RequestParam(value = "size", defaultValue = AppConstant.PAGE_SIZE + "") int size,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction,
+            Model model,
+            Authentication authentication) {
+        logger.info("field {} keyword {}", field, value);
+
+        User user = userService.getUserByEmail(Helper.getEmailOfLoggedInUser(authentication));
+        Page<Contact> pageContacts = null;
+
+        if (field.equalsIgnoreCase("name")) {
+            pageContacts = contactService.searchByName(value, size, page, sortBy, direction,user);
+        } else if (field.equalsIgnoreCase("email")) {
+            pageContacts = contactService.searchByEmail(value, size, page, sortBy, direction,user);
+
+        } else if (field.equalsIgnoreCase("phone")) {
+            pageContacts = contactService.searchByPhoneNumber(value, size, page, sortBy, direction,user);
+
+        }
+        logger.info("pageContacts {}", pageContacts);
+        model.addAttribute("pageContacts", pageContacts);
+
+        return "user/search";
     }
 
 }

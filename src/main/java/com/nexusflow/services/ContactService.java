@@ -2,7 +2,6 @@ package com.nexusflow.services;
 
 import java.util.List;
 
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.domain.Page;
 
 import com.nexusflow.entities.Contact;
@@ -20,7 +19,9 @@ public interface ContactService {
 
     void deleteConatct(String id);
 
-    List<Contact> searchContact(String name, String email, String phoneNumber);
+    Page<Contact> searchByName(String nameKeyword , int size, int page, String sortBy, String order,User user);
+    Page<Contact> searchByEmail(String emailKeyword, int size, int page, String sortBy, String order ,User user);
+    Page<Contact> searchByPhoneNumber(String phoneNumberKeyword, int size, int page, String sortBy, String order,User user);
 
     List<Contact> getContactByUserId(String userId);
 
