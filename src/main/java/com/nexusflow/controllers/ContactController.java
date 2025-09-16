@@ -9,8 +9,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,7 +73,7 @@ public class ContactController {
             return "user/add_contact";
         }
 
-        // image related nprocessing
+        // image related processing
 
         logger.info("File Information : {} ", contactForm.getContactImage().getOriginalFilename());
 
@@ -154,6 +156,24 @@ public class ContactController {
     
          model.addAttribute("pageSize", AppConstant.PAGE_SIZE);
         return "user/search";
+    }
+
+    @GetMapping("/delete/{contactId}")
+    public String deleteContact(
+        @PathVariable("contactId") String contactId,
+        HttpSession session
+        ) {
+
+        contactService.deleteConatct(contactId);
+        logger.info("contactId {} deleted: ", contactId);
+
+        session.setAttribute("message", Message.builder()
+                .content("Contact deleted successfully")
+                .type(MessageType.green)
+                .build());  
+
+        return "redirect:/user/contacts";
+       
     }
 
 }

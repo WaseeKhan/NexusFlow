@@ -18,6 +18,8 @@
         <div class="contacts_container p-5">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
+                    <div th:replace="~{message :: messagebox}"></div>
+
                   <form 
                   th:action="@{'/user/contacts/search'}"
                   th:object="${contactSearchForm}">
@@ -111,9 +113,20 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div>
-                                        <a href="" class="p-1">
+                                        <!-- <a 
+                                        th:href="@{'/user/contacts/delete/'+*{id}}" 
+                                        class="p-1">
                                               <i class="fa-solid w-8 h-8 fa-trash"></i>
-                                        </a>
+                                        </a> -->
+
+                                         <button 
+                                         th:data-id="${contact.id}"
+                                        th:onclick="deleteContact(this.getAttribute('data-id'))"
+                                        class="p-1">
+                                              <i class="fa-solid w-8 h-8 fa-trash"></i>
+                                         </button>
+
+
                                       <a href="" class="p-1">
                                         <i class="fa-solid w-8 h-8 fa-pen-to-square"></i>
                                       </a>
