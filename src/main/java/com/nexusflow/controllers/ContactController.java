@@ -209,13 +209,16 @@ public class ContactController {
     @PostMapping("/update/{conatctId}")
     public String updateContactHandler(
             @PathVariable String conatctId,
+            @RequestParam(value = "contactId", required = false) String contactIdFromForm,
             @Valid @ModelAttribute ContactForm contactForm,
             BindingResult bindingResult,
             Model model, HttpSession session) {
 
         // update conatct
+    String contactId = conatctId != null && !conatctId.isBlank() ? conatctId : contactIdFromForm;
 
         if (bindingResult.hasErrors()) {
+           model.addAttribute("contactId", contactId);
 
             return "user/update_contact_view";
         }
