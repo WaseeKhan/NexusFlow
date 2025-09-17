@@ -101,8 +101,9 @@ public class PageController {
         user.setEmail(userForm.getEmail());
         user.setPassword(userForm.getPassword());
         user.setAbout(userForm.getAbout());
+        user.setEnabled(false);
         user.setPhoneNumber(userForm.getPhoneNumber());
-        user.setProfilePic("https://learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flcwd_logo.45da3818.png&w=1080&q=75");  
+        user.setProfilePic("https://res.cloudinary.com/doszwyloa/image/upload/v1758110157/defaultProfile.png");  
         
         User savedUser = userService.saveUser(user);
         System.out.println("Saved User: "+ savedUser);

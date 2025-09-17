@@ -2,7 +2,6 @@ package com.nexusflow.entities;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,7 +47,7 @@ public class User implements UserDetails{
     private String profilePic;
     private String phoneNumber;
     @Getter(value = AccessLevel.NONE) // disabled getter for enabled field
-    private boolean enabled=true;
+    private boolean enabled=false;
     private boolean emailVerified=false;
     private boolean phoneVerified=false;
 
@@ -96,7 +95,6 @@ public class User implements UserDetails{
     @Override
     public boolean isEnabled() {
         return this.enabled;
-
     }
 
     @Override
