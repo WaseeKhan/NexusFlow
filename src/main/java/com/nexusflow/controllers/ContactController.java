@@ -78,10 +78,7 @@ public class ContactController {
 
         logger.info("File Information : {} ", contactForm.getContactImage().getOriginalFilename());
 
-        String filename = UUID.randomUUID().toString();
-
-        String fileURL = imageService.uploadImage(contactForm.getContactImage(), filename);
-
+        
         Contact contact = new Contact();
         String username = Helper.getEmailOfLoggedInUser(authentication);
         User user = userService.getUserByEmail(username);
@@ -95,12 +92,21 @@ public class ContactController {
         contact.setWebsiteLink(contactForm.getWebsiteLink());
         contact.setPhoneNumber(contactForm.getPhoneNumber());
         contact.setUser(user);
-        contact.setPicture(fileURL);
-        contact.setCloudinaryImagePublicId(filename);
-        contactService.saveContact(contact);
+        contact.setPicture("https://res.cloudinary.com/doszwyloa/image/upload/v1758110157/defaultProfile.png");
 
+        if (contactForm.getContactImage() !=null && !contactForm.getContactImage().isEmpty()) {
+             String filename = UUID.randomUUID().toString();
+            String fileURL = imageService.uploadImage(contactForm.getContactImage(), filename);
+        
+            contact.setPicture(fileURL);
+            contact.setCloudinaryImagePublicId(filename);       
+        }
+       
+
+        contactService.saveContact(contact);
         System.out.println("saveContacts invoked");
         System.out.println(contactForm);
+
         session.setAttribute("message", Message.builder()
                 .content("You have successfully added new contact")
                 .type(MessageType.green)
