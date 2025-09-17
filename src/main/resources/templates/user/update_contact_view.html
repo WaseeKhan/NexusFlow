@@ -21,7 +21,8 @@
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Update Contact</h5>
             <p class="font-normal text-gray-700 dark:text-gray-400 text-sm">This conatct will store on cloud, we can direct email to client from NexusFlow .</p>
            
-                <div th:replace="message :: messagebox"></div>
+               <div th:replace="~{message :: messagebox}"></div>
+
 
             <form 
             th:action="@{'/user/contacts/update/'+${contactId}}" 
