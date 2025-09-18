@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 import com.nexusflow.entities.User;
 import com.nexusflow.helpers.AppConstant;
+import com.nexusflow.helpers.Helper;
 import com.nexusflow.helpers.ResourceNotFoundException;
 import com.nexusflow.repositories.UserRepository;
+import com.nexusflow.services.EmailService;
 import com.nexusflow.services.UserService;
 
 
@@ -27,6 +29,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired  
+    private EmailService emailService;
+
     private Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
 
     @Override
@@ -36,7 +41,18 @@ public class UserServiceImpl implements UserService {
          user.setPassword(passwordEncoder.encode(user.getPassword()));
          user.setRoleList(List.of(AppConstant.ROLE_USER));
         logger.info(user.getProvider().toString());
-        return userRepository.save(user);
+       
+        //for email verification
+        String emailToken = UUID.randomUUID().toString();
+        user.setEmailToken(emailToken); //saving email token to db
+        // saving user to db 
+        User savedUser = userRepository.save(user);
+        logger.info("User saved with id: {}", savedUser.getUserId());
+
+        String emailLink = Helper.getLinkForEmailVerification(emailToken);
+        logger.info("Email verification link: {}", emailLink);
+        emailService.sendEmail(savedUser.getEmail(), "Verify Account - NexusFlow", emailLink); 
+        return savedUser;
     }
 
     @Override

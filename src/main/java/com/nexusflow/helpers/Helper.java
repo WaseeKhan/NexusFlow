@@ -33,4 +33,11 @@ public class Helper {
             return authentication.getName();
         }
     }   
+
+    public static String getLinkForEmailVerification(String emailTocken){
+
+        String link = "http://localhost:8080/auth/verify-email?token="+emailTocken;
+        return link;
+
+    }
 }

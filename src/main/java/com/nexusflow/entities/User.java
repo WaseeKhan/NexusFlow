@@ -65,6 +65,11 @@ public class User implements UserDetails{
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roleList = new ArrayList<>();
+
+    private String emailToken;
+
+
+
     // role related methods will be implemented later
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
