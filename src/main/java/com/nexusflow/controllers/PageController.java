@@ -24,12 +24,14 @@ public class PageController {
     private UserService userService;
 
     @GetMapping("/")
-    public String index(){
+    public String index(Model model){
+        
         return "redirect:/home";
     }
 
     @GetMapping("/home")
     public String home(Model model){
+        model.addAttribute("activePage", "home");
         System.out.println("Home Page Handler");
         model.addAttribute("appName", "NexusFlow");
         model.addAttribute("appCategory", "A CRM Application");
@@ -39,18 +41,21 @@ public class PageController {
 
     @GetMapping("/about")
     public String aboutPage(Model model){
+        model.addAttribute("activePage", "about");
         model.addAttribute("isLogin", false);
         System.out.println("About Page Handler");
         return "about";
     }
 
     @GetMapping("/services")
-    public String servicesPage(){
+    public String servicesPage(Model model){
+        model.addAttribute("activePage", "services");
         System.out.println("Services Page Handler");
         return "services";
     }
      @GetMapping("/contact")
-    public String contactPage(){
+    public String contactPage(Model model){
+        model.addAttribute("activePage", "contact");
         System.out.println("Contact Page Handler");
         return "contact";
     }
