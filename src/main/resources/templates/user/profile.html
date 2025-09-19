@@ -17,7 +17,7 @@
 
                 <div class="flex items-center justify-center">
 
-                    <div class="max w-xs">
+                    <div class="max w-md mx-auto">
                         <div class="bg-white shadow-xl rounded-lg py-3">
                             <div class="photo-wrapper p-2">
                                 <img class="w-32 h-32 rounded-full mx-auto"
@@ -57,6 +57,12 @@
                                             class="px-2 py-2">john@exmaple.com</td>
                                         </tr>
                                         <tr>
+                                            <td class="px-2 py-2 text-gray-500 font-semibold">Address</td>
+                                            <td 
+                                            th:text="${loggedInUser.address}"
+                                            class="px-2 py-2"></td>
+                                        </tr>
+                                        <tr>
                                             <td class="px-2 py-2 text-gray-500 font-semibold">Active?</td>
                                             <td 
                                             th:text="${loggedInUser.enabled} ? 'Yes' : 'No'"
@@ -67,7 +73,7 @@
                                             <td class="px-2 py-2 text-gray-500 font-semibold">Email Verified?</td>
                                             <td 
                                             th:text="${loggedInUser.emailVerified} ? 'Yes' : 'No'"
-                                            class="px-2 py-2">john@exmaple.com</td>
+                                            class="px-2 py-2"></td>
                                         </tr>
                                          <tr>
                                             <td class="px-2 py-2 text-gray-500 font-semibold">Phone Verified?</td>
@@ -78,12 +84,21 @@
                                     </tbody>
                                 </table>
 
-                                <div class="text-center my-3">
+                               <div class="flex justify-center space-x-5">
+                                 <div class="text-center my-3">
                                     <a 
                                     
                                     class="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"
                                     th:href="@{'/user/profile/update/' + ${loggedInUser.userId}}">Update Profile</a>
                                 </div>
+                                <div class="text-center my-3">
+                                    <a 
+                                    
+                                    class="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"
+                                    href="#">Change password
+                                </a>
+                                </div>
+                               </div>
 
                             </div>
                         </div>
