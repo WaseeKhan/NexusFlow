@@ -18,6 +18,7 @@ import lombok.ToString;
 @ToString
 public class UserForm {
 
+    private String userId;
     @NotBlank(message = "Name is required")
     @Size(min=3,message = "Name must be at least 3 characters long")
     private String name;
@@ -31,6 +32,8 @@ public class UserForm {
     @NotBlank(message = "About is required")
     private String about; 
     @Size(min=10, max=12, message = "Phone number must be between 10 and 12 characters")
-    private String phoneNumber;  
+    private String phoneNumber; 
+    
+    private String address;
 
 }

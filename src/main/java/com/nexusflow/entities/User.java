@@ -46,6 +46,8 @@ public class User implements UserDetails{
     @Column(length = 1000)
     private String profilePic;
     private String phoneNumber;
+    @Column(length = 1000)
+    private String address;
     @Getter(value = AccessLevel.NONE) // disabled getter for enabled field
     private boolean enabled=false;
     private boolean emailVerified=false;

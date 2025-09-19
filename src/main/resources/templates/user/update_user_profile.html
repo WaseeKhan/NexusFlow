@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}">
+
+<head>
+    <title th:text="${loggedInUser.name}+ ' - NexusFlow | Dashboard' "> </title>
+</head>
+
+<body>
+    <div id="content">
+        <div th:if="${loggedInUser}">
+            <div th:replace="~{user/sidebar :: sidebar}"></div>
+        </div>
+
+        <div class="sm:pl-64 pt-20 h-1000">
+            <div>
+
+
+
+                <div class="grid grid-cols-12 mt-2">
+                    <div class="col-span-4 md:col-span-2 lg:col-span-2 xl:col-span-4"></div>
+                    <div class="col-span-12 md:col-span-8 lg:col-span-8 xl:col-span-4">
+                        <!-- card -->
+                        <div
+                            class="block border-t-8 p-6 bg-white  border-blue-700 rounded-xl shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+                            <!-- message here  -->
+                            <div th:replace="message :: messagebox"></div>
+
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Register
+                                Here</h5>
+                            <p class="font-normal text-gray-400 dark:text-gray-400">Let's Start managing Contacts On
+                                Clouds.</p>
+
+                            <form 
+                            th:action="@{'/user/profile/update/'+${userForm.userId}}"
+                            method="post" th:object="${userForm}" novalidate
+                                class="mt-5">
+                                <div class="mb-3">
+                                    <label for="name"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                    <input th:field="*{name}" type="text" id="name"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Enter Name Here" required />
+
+                                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                                        class="text-red-800 px-1 py-2 text-sm"></p>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                    <input th:field="*{email}" readonly type="email" id="email"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="info@nexusflow.com" required />
+                                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                        class="text-red-800 px-1 py-2 text-sm"></p>
+                                </div>
+
+
+                                <div class="mb-5">
+                                    <label for="phone"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
+                                    <input th:field="*{phoneNumber}" type="text" id="phone"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required />
+                                    <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
+                                        class="text-red-800 px-1 py-2 text-sm"></p>
+                                </div>
+
+                                <div class="mb-5">
+                                    <label for="about"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">About</label>
+                                    <textarea th:field="*{about}" id="about" rows="3"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Write about yourself here...">
+
+                                    </textarea>
+                                    <p th:if="${#fields.hasErrors('about')}" th:errors="*{about}"
+                                        class="text-red-800 px-1 py-2 text-sm"></p>
+                                </div>
+
+                                <!-- address  -->
+                                <div class="mb-3">
+                                    <label for="Address"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                                    <textarea 
+                                    th:field="*{address}"
+                                    id="address" rows="3"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Provide your address here...">
+
+                                    </textarea>
+
+                                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                        class="text-red-800 px-1 py-2 text-sm"></p>
+                                </div>
+                                <input type="hidden" th:field="*{userId}" />
+                                <div class="mb-3 flex justify-center space-x-3">
+                                    <button type="submit"
+                                        class="px-3 py-2 rounded bg-blue-700 hover:bg-blue-600 text-white ">Update</button>
+
+                                    <button type="reset"
+                                        class="px-3 py-2 rounded bg-blue-700 hover:bg-blue-600 text-white ">Reset</button>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        console.log("Hello from edit_user_profile.html");
+    </script>
+</body>
+
+</html>
