@@ -27,9 +27,12 @@ th:fragment="parent(content, title, script)" xmlns:th="https://www.thymeleaf.org
 <div th:unless="${loggedInUser}">
      <div th:replace="~{navbar :: navbar}"></div>
 </div>
-    
+     <!-- "${#strings.equals(#httpServletRequest.requestURI, '/user/profile') ? 'pt-28' : 'pt-20'}" -->
+       
     <!-- main content here -->
-     <div class="p-4">
+     <div 
+    
+     class="p-4" >
         <section data-th-replace="${content}"></section>
      </div>
 

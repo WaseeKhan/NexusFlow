@@ -4,7 +4,7 @@
 <title>NexusFlow - Services</title>
 </head>
 <body>
-    <div id="content" class="pt-20">
+    <div id="content" th:classappend="${loggedInUser} ? 'mt-15' : 'mt-0'" >
         <h1>This is Services Page</h1>
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia, repellendus.</p>
     </div>
