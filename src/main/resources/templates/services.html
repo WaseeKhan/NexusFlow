@@ -4,9 +4,17 @@
 <title>NexusFlow - Services</title>
 </head>
 <body>
-    <div id="content" th:classappend="${loggedInUser} ? 'mt-15' : 'mt-0'" >
-        <h1>This is Services Page</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia, repellendus.</p>
+    <div id="content" >
+         <!-- Automation -->
+  <section id="automation" class="py-24 text-center px-6">
+    <h2 class="text-4xl font-bold mb-6" data-aos="fade-up">Beautiful Automation Flows</h2>
+    <p class="text-lg text-gray-300 max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="200">
+      Design visual customer journeys with drag-and-drop automation. Build workflows in minutes that keep customers engaged.
+    </p>
+    <img data-aos="zoom-in" data-aos-delay="300"
+         src="https://dummyimage.com/1000x400/2d2d2d/ffffff&text=Automation+Workflow+Preview"
+         class="rounded-2xl mx-auto shadow-2xl border border-gray-700" alt="Automation Flow">
+  </section>
     </div>
     <script>
         console.log("Hello from services.html");

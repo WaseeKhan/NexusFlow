@@ -30,14 +30,12 @@ th:fragment="parent(content, title, script)" xmlns:th="https://www.thymeleaf.org
      <!-- "${#strings.equals(#httpServletRequest.requestURI, '/user/profile') ? 'pt-28' : 'pt-20'}" -->
        
     <!-- main content here -->
-     <div 
-    
-     class="p-4" >
+     <div >
         <section data-th-replace="${content}"></section>
      </div>
 
      <!-- Footer  -->
-     <!-- <div th:replace="~{footer :: footer}"></div> -->
+     <div th:replace="~{footer :: footer}"></div>
 
     
      <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>

@@ -1,95 +1,55 @@
-<nav th:fragment="user-navbar" 
-class="bg-white border-gray-400 shadow-sm dark:bg-gray-900 dark:text-white fixed  w-full top-0 left-0 right-0" >
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-1">
-    
-    <!-- button for sidebar on small screen start here -->
-      <button data-drawer-target="cta-button-sidebar" data-drawer-toggle="cta-button-sidebar" aria-controls="cta-button-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-        <span class="sr-only">Open sidebar</span>
-        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-        </svg>
-      </button>
-  <!-- button for sidebar on small screen end  here -->
+<header th:fragment="user-navbar" 
+class="flex justify-between items-center px-6 md:px-10 py-4 bg-gradient-to-r from-purple-900/80 via-blue-900/80 to-black/80 backdrop-blur-lg fixed w-full z-50 shadow-lg">
+  <!-- Logo -->
+  <div class="flex items-center space-x-2">
+    <img th:src="@{'/images/navbar_logo.png'}" alt="NexusFlow Logo" class="h-10 md:h-12">
+    <h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-orange-400 bg-clip-text text-transparent">
+      NexusFlow
+    </h1>
+  </div>
 
-  <a th:href="@{'/home'}" class="flex items-center space-x-3 rtl:space-x-reverse">
-    
-
-
-      <img th:src="@{'/images/NexusFlow_logo.png'}" class="sm:px-6 h-16" alt="NexusFlow Logo" />
-
-
-<!-- <div class="bg-white dark:bg-black text-black dark:text-white">Test Dark Mode</div> -->
-      
-      <!-- <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">NexusFlow</span> -->
-  </a>
-  <div class="flex gap-2 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-
-      <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
-    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-</button>
-
-
-<!-- nav picture icon  -->
-
-
-<!-- baad me implement krenge  -->
-
-  <!-- nav picture icon end -->
-
-      <a th:href="@{'/user/profile'}" type="button" class="hidden md:flex text-white bg-[#673AB7] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#673AB7] dark:hover:bg-blue-700 dark:focus:ring-blue-800 dark:text-white">
+  <!-- Desktop Nav -->
+  <nav class="hidden md:flex space-x-8 text-base font-medium">
+    <a th:href="@{'/home'}" class="hover:text-orange-400 transition">Home</a>
+    <a th:href="@{'/about'}" class="hover:text-orange-400 transition">About</a>
+    <!-- <a href="#features" class="hover:text-orange-400 transition">Features</a> -->
+    <a th:href="@{'/services'}" class="hover:text-orange-400 transition">Services</a>
+    <!-- <a href="#pricing" class="hover:text-orange-400 transition">Pricing</a> -->
+    <!-- <a href="#testimonials" class="hover:text-orange-400 transition">Testimonials</a> -->
+    <a th:href="@{'/contact'}" class="hover:text-orange-400 transition">Contact</a>
+  </nav>
+<div class="flex items-center space-x-4">
+   <a th:href="@{'/user/profile'}" type="button" class="hidden md:flex text-white bg-[#673AB7] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#673AB7] dark:hover:bg-blue-700 dark:focus:ring-blue-800 dark:text-white">
         <span th:text="${loggedInUser.name}"></span>
       </a>
-
-      <a th:href="@{'/logout'}" type="button" class="hidden md:flex text-white bg-[#E91E63]
+   <a th:href="@{'/logout'}" type="button" class="hidden md:flex text-white bg-[#E91E63]
        hover:bg-[#F57F17] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium 
        rounded-lg text-sm px-4 py-2 text-center dark:bg-[#E91E63] dark:hover:bg-[#F57F17]dark:focus:ring-red-800">Logout</a>
-      
-      
-      <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded="false">
-        <span class="sr-only">Open main menu</span>
-        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-        </svg>
-    </button>
-  </div>
-  <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
-    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-      <li>
-        <a th:href="@{'/home'}" 
-        th:classappend="${activePage} == 'home' ? 'text-white  md:text-[#E91E63] md:hover:text-red-700 md:dark:hover:text-red-700 md:dark:text-[#E91E63]' : 'text-gray-900 dark:text-white'"
-        class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
-      </li>
-      <li>
-        <a th:href="@{'/about'}" 
-        th:classappend="${activePage} == 'about' ?
-        'text-white md:text-[#E91E63] md:hover:text-red-700 md:dark:hover:text-red-700  md:dark:text-[#E91E63]' : 'text-gray-900 dark:text-white'"
-        class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
-      </li>
-      <li>
-        <a th:href="@{'/services'}" 
-        th:classappend="${activePage} == 'services' ? 'text-white  md:text-[#E91E63] md:hover:text-red-700 md:dark:hover:text-red-700 md:dark:text-[#E91E63]' : 'text-gray-900 dark:text-white'"
-        class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
-      </li>
-      <li>
-        <a th:href="@{'/contact'}" 
-        th:classappend="${activePage} == 'contact' ? 'text-white md:hover:text-red-700 md:dark:hover:text-red-700 md:text-[#E91E63] md:dark:text-[#E91E63]' : 'text-gray-900 dark:text-white'"
-        class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
-      </li>
-      <li class="mb-4">
-       <a th:href="@{'/user/profile'}" type="button" class="md:hidden text-white bg-[#673AB7] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#673AB7] dark:hover:bg-blue-700 dark:focus:ring-blue-800 dark:text-white">
-        <span th:text="${loggedInUser.name}"></span>
-      </a>
-    </li>
-    <li>
-      <a th:href="@{'/logout'}" type="button" class="md:hidden text-white bg-[#E91E63]
-       hover:bg-[#F57F17] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium 
-       rounded-lg text-sm px-4 py-2 text-center dark:bg-[#E91E63] dark:hover:bg-[#F57F17]dark:focus:ring-red-800">Logout</a>
-       </li>
-    </ul>
-  </div>
-  </div>
+</div>
+  <!-- Mobile Menu Button -->
+  <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2"
+         viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </button>
 
-  <!-- trying for profile icon on usernabar  -->
-   
-</nav>
+  <!-- Mobile Nav -->
+  <div id="mobile-menu" class="hidden absolute top-16 right-4 bg-gray-900/95 rounded-xl p-6 space-y-4 text-lg md:hidden shadow-xl">
+    <a href="#" class="block hover:text-orange-400">Home</a>
+    <a href="#features" class="block hover:text-orange-400">Features</a>
+    <a href="#automation" class="block hover:text-orange-400">Automation</a>
+    <a href="#pricing" class="block hover:text-orange-400">Pricing</a>
+    <a href="#testimonials" class="block hover:text-orange-400">Testimonials</a>
+    <a th:href="@{'/contact'}"  class="block hover:text-orange-400">Contact</a>
+    <a href="#get-started" class="block px-5 py-2 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full text-center">Get Started</a>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>

@@ -4,9 +4,59 @@
 <title>NexusFlow - Contact</title>
 </head>
 <body>
-    <div id="content" th:classappend="${loggedInUser} ? 'mt-15' : 'mt-0'" >
-        <h1>Welcome to <b>Contact</b> Page</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut vitae exercitationem facilis nisi vero in amet illum sit accusamus reiciendis.</p>
+    <div id="content">
+        <!-- Call to Action -->
+  <section class="py-20 bg-gradient-to-r from-pink-600 via-purple-600 to-orange-500 text-center">
+    <h2 class="text-4xl font-bold mb-6" data-aos="fade-up">Ready to Automate Your Business?</h2>
+    <p class="text-lg text-white/90 mb-8" data-aos="fade-up" data-aos-delay="200">Join 10,000+ businesses scaling with NexusFlow.</p>
+    <a href="#" class="px-10 py-4 bg-black rounded-full text-lg font-semibold hover:bg-gray-800 transition shadow-xl">Get Started Today</a>
+  </section>
+
+
+    <!-- Get Started Form -->
+  <section id="get-started" class="py-24 px-6 bg-gradient-to-r from-purple-900/70 to-blue-900/70 relative">
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+    
+    <div class="max-w-4xl mx-auto relative z-10 text-center">
+      <h2 class="text-4xl font-bold mb-6" data-aos="fade-up">
+        Get Started with <span class="text-orange-400">NexusFlow</span>
+      </h2>
+      <p class="text-gray-300 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="150">
+        Ready to revolutionize your customer communication?  
+        Sign up now and explore powerful automation, seamless email integration, and cutting-edge developer APIs.
+      </p>
+
+      <form class="grid gap-6 bg-black/70 p-8 rounded-2xl shadow-xl border border-purple-600/30 max-w-2xl mx-auto" data-aos="zoom-in">
+        <div class="grid md:grid-cols-2 gap-6">
+          <input type="text" placeholder="Full Name" required
+            class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 focus:border-purple-400 text-white placeholder-gray-400 outline-none">
+          <input type="email" placeholder="Email Address" required
+            class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 focus:border-purple-400 text-white placeholder-gray-400 outline-none">
+        </div>
+
+        <input type="text" placeholder="Company Name"
+          class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 focus:border-purple-400 text-white placeholder-gray-400 outline-none">
+
+        <select class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 focus:border-purple-400 text-white outline-none">
+          <option value="">I’m interested in...</option>
+          <option>Free Trial</option>
+          <option>Schedule a Demo</option>
+          <option>Developer API Access</option>
+        </select>
+
+        <textarea placeholder="Your Message (Optional)" rows="4"
+          class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 focus:border-purple-400 text-white placeholder-gray-400 outline-none"></textarea>
+
+        <button type="submit"
+          class="w-full py-3 bg-gradient-to-r from-purple-500 to-orange-500 rounded-lg text-white font-semibold text-lg shadow-lg hover:scale-105 transition">
+          🚀 Get Started
+        </button>
+      </form>
+    </div>
+  </section>
+
+
+    
     </div>
     <script>
         console.log("Hello from contact.html");

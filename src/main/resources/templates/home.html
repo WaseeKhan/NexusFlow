@@ -3,14 +3,171 @@
 <head>
 <title>NexusFlow - Home</title>
 </head>
-<body>
-    <div id="content" 
-    th:classappend="${loggedInUser} ? 'mt-15' : 'mt-0'" >
-        <h1>Welcome to Home Page</h1>
-        
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut vitae exercitationem facilis nisi vero in amet illum sit accusamus reiciendis.</p>
+<body class=" m-0 bg-gradient-to-br from-purple-900 via-blue-900 to-black text-white font-sans">
+
+    <div id="content">
+
+     
+  <!-- Navbar Include -->
+  <!-- <div id="navbar"></div>
+  <script>
+    fetch("navbar.html").then(res => res.text()).then(data => {
+      document.getElementById("navbar").innerHTML = data;
+    });
+  </script> -->
+
+  <!-- Hero -->
+  <section class="text-center pt-40 pb-24 px-0 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-pink-500/20 via-purple-500/10 to-orange-400/20 blur-3xl"></div>
+    <h1 data-aos="fade-up" class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+      Power Your Growth with  
+      <span class="bg-gradient-to-r from-pink-500 via-purple-500 to-orange-400 bg-clip-text text-transparent">NexusFlow CRM</span>
+    </h1>
+    <p data-aos="fade-up" data-aos-delay="200" class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+      Automate your workflows, personalize customer journeys, and grow your business with the smartest CRM solution.
+    </p>
+    <div data-aos="zoom-in" data-aos-delay="400" class="space-x-4">
+      <a href="#get-started" class="px-8 py-4 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full text-lg font-semibold shadow-lg hover:scale-105 transition">Start Free Trial</a>
+      <a href="#demo" class="px-8 py-4 border border-pink-400 rounded-full text-lg font-semibold hover:bg-pink-500/20 transition">Book Demo</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-20 px-6 bg-gradient-to-br from-purple-800/30 to-blue-900/30">
+    <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">What Makes Us Different?</h2>
+    <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      <div data-aos="fade-up" class="p-8 rounded-2xl bg-white/10 backdrop-blur-lg shadow-xl hover:scale-105 transition">
+        <div class="text-pink-400 text-4xl mb-4">📊</div>
+        <h3 class="text-2xl font-semibold mb-3">Smart CRM Dashboard</h3>
+        <p class="text-gray-300">Track leads, manage pipelines, and monitor KPIs with a real-time dashboard built for speed.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200" class="p-8 rounded-2xl bg-white/10 backdrop-blur-lg shadow-xl hover:scale-105 transition">
+        <div class="text-orange-400 text-4xl mb-4">📧</div>
+        <h3 class="text-2xl font-semibold mb-3">Email & SMS Automation</h3>
+        <p class="text-gray-300">Send personalized messages, schedule follow-ups, and automate campaigns effortlessly.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="400" class="p-8 rounded-2xl bg-white/10 backdrop-blur-lg shadow-xl hover:scale-105 transition">
+        <div class="text-cyan-400 text-4xl mb-4">📈</div>
+        <h3 class="text-2xl font-semibold mb-3">AI-Powered Insights</h3>
+        <p class="text-gray-300">Leverage predictive analytics and AI recommendations to close deals faster.</p>
+      </div>
+    </div>
+  </section>
+
+ 
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-24 px-6 bg-gradient-to-r from-purple-900/40 to-blue-900/40">
+    <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">Simple, Transparent Pricing</h2>
+    <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      <div data-aos="fade-up" class="p-10 rounded-2xl bg-white/10 backdrop-blur-lg shadow-xl text-center hover:scale-105 transition">
+        <h3 class="text-xl font-semibold mb-4">Starter</h3>
+        <p class="text-4xl font-bold mb-6">$19<span class="text-lg">/mo</span></p>
+        <ul class="text-gray-300 mb-6 space-y-2">
+          <li>✅ Basic CRM Features</li>
+          <li>✅ Email Campaigns</li>
+          <li>❌ Advanced Analytics</li>
+        </ul>
+        <a href="#get-started" class="px-6 py-3 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full">Choose Plan</a>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200" class="p-10 rounded-2xl bg-gradient-to-r from-pink-500/30 to-orange-500/30 backdrop-blur-lg shadow-xl text-center border-2 border-pink-400 hover:scale-105 transition">
+        <h3 class="text-xl font-semibold mb-4">Professional</h3>
+        <p class="text-4xl font-bold mb-6">$49<span class="text-lg">/mo</span></p>
+        <ul class="text-gray-100 mb-6 space-y-2">
+          <li>✅ All Starter Features</li>
+          <li>✅ SMS Automation</li>
+          <li>✅ Advanced Analytics</li>
+        </ul>
+        <a href="#get-started" class="px-6 py-3 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full">Most Popular</a>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="400" class="p-10 rounded-2xl bg-white/10 backdrop-blur-lg shadow-xl text-center hover:scale-105 transition">
+        <h3 class="text-xl font-semibold mb-4">Enterprise</h3>
+        <p class="text-4xl font-bold mb-6">Custom</p>
+        <ul class="text-gray-300 mb-6 space-y-2">
+          <li>✅ All Pro Features</li>
+          <li>✅ Dedicated Support</li>
+          <li>✅ API Access</li>
+        </ul>
+        <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full">Contact Sales</a>
+      </div>
+    </div>
+  </section>
+
+    <!-- Get Started Form -->
+  <section id="get-started" class="py-24 px-6 bg-gradient-to-r from-purple-900/70 to-blue-900/70 relative">
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+    
+    <div class="max-w-4xl mx-auto relative z-10 text-center">
+      <h2 class="text-4xl font-bold mb-6" data-aos="fade-up">
+        Get Started with <span class="text-orange-400">NexusFlow</span>
+      </h2>
+      <p class="text-gray-300 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="150">
+        Ready to revolutionize your customer communication?  
+        Sign up now and explore powerful automation, seamless email integration, and cutting-edge developer APIs.
+      </p>
+
+      <form class="grid gap-6 bg-black/70 p-8 rounded-2xl shadow-xl border border-purple-600/30 max-w-2xl mx-auto" data-aos="zoom-in">
+        <div class="grid md:grid-cols-2 gap-6">
+          <input type="text" placeholder="Full Name" required
+            class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 focus:border-purple-400 text-white placeholder-gray-400 outline-none">
+          <input type="email" placeholder="Email Address" required
+            class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 focus:border-purple-400 text-white placeholder-gray-400 outline-none">
+        </div>
+
+        <input type="text" placeholder="Company Name"
+          class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 focus:border-purple-400 text-white placeholder-gray-400 outline-none">
+
+        <select class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 focus:border-purple-400 text-white outline-none">
+          <option value="">I’m interested in...</option>
+          <option>Free Trial</option>
+          <option>Schedule a Demo</option>
+          <option>Developer API Access</option>
+        </select>
+
+        <textarea placeholder="Your Message (Optional)" rows="4"
+          class="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 focus:border-purple-400 text-white placeholder-gray-400 outline-none"></textarea>
+
+        <button type="submit"
+          class="w-full py-3 bg-gradient-to-r from-purple-500 to-orange-500 rounded-lg text-white font-semibold text-lg shadow-lg hover:scale-105 transition">
+          🚀 Get Started
+        </button>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="py-24 px-6 text-center">
+    <h2 class="text-4xl font-bold mb-16" data-aos="fade-up">Loved by Businesses Worldwide</h2>
+    <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      <div data-aos="fade-up" class="p-8 rounded-2xl bg-white/10 shadow-xl">
+        <p class="text-gray-300 mb-4">“NexusFlow transformed how we handle clients. Our sales doubled in 6 months!”</p>
+        <h4 class="font-semibold text-orange-400">— Sarah, SaaS Founder</h4>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200" class="p-8 rounded-2xl bg-white/10 shadow-xl">
+        <p class="text-gray-300 mb-4">“The automation flows are a game-changer. We save 20+ hours every week.”</p>
+        <h4 class="font-semibold text-pink-400">— Michael, Marketing Manager</h4>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="400" class="p-8 rounded-2xl bg-white/10 shadow-xl">
+        <p class="text-gray-300 mb-4">“Easy to use, affordable, and powerful. NexusFlow is the future of CRM.”</p>
+        <h4 class="font-semibold text-cyan-400">— Priya, E-commerce Owner</h4>
+      </div>
+    </div>
+  </section>
+
+ 
+
+ 
+
+    
     </div>
 
+    
+     <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init({ duration: 1000, once: true });</script>
+
+        
     <script>
         console.log("Hello from Home.html");
      </script>

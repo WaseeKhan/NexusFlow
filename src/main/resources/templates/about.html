@@ -5,11 +5,45 @@
 </head>
 <body>
     
-    <div id="content"
-    th:classappend="${loggedInUser} ? 'mt-15' : 'mt-0'"  
-    >
-        <h1>Welcome to About Page</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut vitae exercitationem facilis nisi vero in amet illum sit accusamus reiciendis.</p>
+    <div id="content">
+
+        <!-- Hero -->
+  <section class="text-center pt-40 pb-24 px-0 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-pink-500/20 via-purple-500/10 to-orange-400/20 blur-3xl"></div>
+    <h1 data-aos="fade-up" class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+      Power Your Growth with  
+      <span class="bg-gradient-to-r from-pink-500 via-purple-500 to-orange-400 bg-clip-text text-transparent">NexusFlow CRM</span>
+    </h1>
+    <p data-aos="fade-up" data-aos-delay="200" class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+      Automate your workflows, personalize customer journeys, and grow your business with the smartest CRM solution.
+    </p>
+    <div data-aos="zoom-in" data-aos-delay="400" class="space-x-4">
+      <a href="#get-started" class="px-8 py-4 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full text-lg font-semibold shadow-lg hover:scale-105 transition">Start Free Trial</a>
+      <a href="#demo" class="px-8 py-4 border border-pink-400 rounded-full text-lg font-semibold hover:bg-pink-500/20 transition">Book Demo</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-20 px-6 bg-gradient-to-br from-purple-800/30 to-blue-900/30">
+    <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">What Makes Us Different?</h2>
+    <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      <div data-aos="fade-up" class="p-8 rounded-2xl bg-white/10 backdrop-blur-lg shadow-xl hover:scale-105 transition">
+        <div class="text-pink-400 text-4xl mb-4">📊</div>
+        <h3 class="text-2xl font-semibold mb-3">Smart CRM Dashboard</h3>
+        <p class="text-gray-300">Track leads, manage pipelines, and monitor KPIs with a real-time dashboard built for speed.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200" class="p-8 rounded-2xl bg-white/10 backdrop-blur-lg shadow-xl hover:scale-105 transition">
+        <div class="text-orange-400 text-4xl mb-4">📧</div>
+        <h3 class="text-2xl font-semibold mb-3">Email & SMS Automation</h3>
+        <p class="text-gray-300">Send personalized messages, schedule follow-ups, and automate campaigns effortlessly.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="400" class="p-8 rounded-2xl bg-white/10 backdrop-blur-lg shadow-xl hover:scale-105 transition">
+        <div class="text-cyan-400 text-4xl mb-4">📈</div>
+        <h3 class="text-2xl font-semibold mb-3">AI-Powered Insights</h3>
+        <p class="text-gray-300">Leverage predictive analytics and AI recommendations to close deals faster.</p>
+      </div>
+    </div>
+  </section>
     </div>
     <script>
         console.log("Hello from about.html");
