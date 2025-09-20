@@ -1,183 +1,167 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}" >
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}">
 <head>
-<title th:text="${loggedInUser.name}+ ' - NexusFlow | Update Contact' "> </title>
+  <title th:text="${loggedInUser.name}+ ' - NexusFlow | Update Contact'"> </title>
 </head>
 <body>
-    <div id="content">
-        <div th:if="${loggedInUser}">
-        <div th:replace="~{user/sidebar :: sidebar}"></div>
+<div id="content">
+  <!-- Sidebar -->
+  <div th:if="${loggedInUser}">
+    <div th:replace="~{user/sidebar :: sidebar}"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="sm:pl-64 pt-20">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Update Contact</h2>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">
+          Modify your contact details. Updated info will be stored securely in NexusFlow.
+        </p>
+
+        <!-- message box -->
+        <div th:replace="~{message :: messagebox}"></div>
+
+        <!-- Form -->
+        <form th:action="@{'/user/contacts/update/' + ${contactId}}"
+              th:object="${contactForm}"
+              method="post"
+              enctype="multipart/form-data"
+              class="space-y-6">
+
+          <!-- Contact Name -->
+          <div>
+            <label class="block text-sm font-medium text-gray-900 dark:text-gray-200 mb-1">Contact Name</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                <i class="fa-solid fa-user"></i>
+              </span>
+              <input th:field="*{name}" type="text"
+                     class="pl-10 w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                     placeholder="Contact Name">
+            </div>
+            <span class="text-red-500 text-xs" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label class="block text-sm font-medium text-gray-900 dark:text-gray-200 mb-1">Email</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                <i class="fa-solid fa-envelope"></i>
+              </span>
+              <input th:field="*{email}" type="email"
+                     class="pl-10 w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                     placeholder="example@nexusflow.in">
+            </div>
+            <span class="text-red-500 text-xs" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label class="block text-sm font-medium text-gray-900 dark:text-gray-200 mb-1">Phone</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                <i class="fa-solid fa-phone"></i>
+              </span>
+              <input th:field="*{phoneNumber}" type="text"
+                     class="pl-10 w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                     placeholder="+91 9876543210">
+            </div>
+            <span class="text-red-500 text-xs" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+          </div>
+
+          <!-- Address -->
+          <div>
+            <label class="block text-sm font-medium text-gray-900 dark:text-gray-200 mb-1">Address</label>
+            <textarea th:field="*{address}" rows="3"
+                      class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                      placeholder="Enter full address..."></textarea>
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label class="block text-sm font-medium text-gray-900 dark:text-gray-200 mb-1">Description</label>
+            <textarea th:field="*{description}" rows="3"
+                      class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                      placeholder="Notes about this contact..."></textarea>
+          </div>
+
+          <!-- Social Links -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-900 dark:text-gray-200 mb-1">Website</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                  <i class="fa-solid fa-link"></i>
+                </span>
+                <input th:field="*{websiteLink}" type="text"
+                       class="pl-10 w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                       placeholder="www.nexusflow.in">
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-900 dark:text-gray-200 mb-1">LinkedIn</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                  <i class="fa-brands fa-linkedin"></i>
+                </span>
+                <input th:field="*{linkedInLink}" type="text"
+                       class="pl-10 w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                       placeholder="LinkedIn profile link">
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Image -->
+          <div>
+            <label class="block text-sm font-medium text-gray-900 dark:text-gray-200 mb-1">Contact Image</label>
+            <input th:field="*{contactImage}" type="file" id="image_file_input"
+                   class="w-full text-sm text-gray-900 dark:text-gray-400 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700">
+            <img id="upload_image_preview"
+                 th:if="*{picture}"
+                 th:src="*{picture}"
+                 alt="Current Contact Image"
+                 class="max-h-40 rounded-lg mt-4">
+          </div>
+
+          <!-- Hidden Contact ID -->
+          <input type="hidden" name="contactId" th:value="${contactId}"/>
+
+          <!-- Favorite -->
+          <div class="flex items-center">
+            <input th:field="*{favorite}" type="checkbox"
+                   class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+            <label class="ml-2 block text-sm text-gray-900 dark:text-gray-200">Favorite?</label>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex justify-center gap-4">
+            <button type="submit"
+                    class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 text-sm font-medium">
+              Update Contact
+            </button>
+            <button type="reset"
+                    class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 text-sm font-medium">
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
+</div>
 
-    
-    <div class="sm:pl-64 pt-20" >
-        <div class="grid grid-cols-12">
-           <div class="col-span-3"></div>
-           <div class=" col-span-12 md:col-span-6">
-            
-
-            <div class=" card block p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Update Contact</h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400 text-sm">This conatct will store on cloud, we can direct email to client from NexusFlow .</p>
-           
-               <div th:replace="~{message :: messagebox}"></div>
-
-
-            <form 
-            th:action="@{'/user/contacts/update/'+${contactId}}" 
-            th:object="${contactForm}" 
-            method = "post" 
-            class="mt-8"
-            enctype="multipart/form-data"
-            >
-
-                <!-- name  -->
-                 <div class="mb-4">
-               
-                 <label for="email-address-icon" class="block mb-2  mt-4 text-sm font-medium text-gray-900 dark:text-white">Contact Name</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                  <i class="fa-solid fa-user"></i>
-                </div>
-                <input type="text"
-                th:field="*{name}"
-                id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Contact Name">
-                
-                </div>
-                <span class="text-red-500"
-                th:if="${#fields.hasErrors('name')}"
-                th:errors="*{name}"
-                ></span>
-
-                <!-- email  -->
-                <div class="mb-3">
-                 <label for="email-address-icon" class="block mb-2  mt-4 text-sm font-medium text-gray-900 dark:text-white">Contact Email</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                   <i class="fa-solid fa-envelope"></i>
-                </div>
-                <input type="text" 
-                th:field="*{email}"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example@nexusflow.in">
-                </div>
-                <span class="text-red-500"
-                th:if="${#fields.hasErrors('email')}"
-                th:errors="*{email}"
-                ></span>
-
-                 <!-- phone  -->
-                <div class="mb-3">
-                 <label for="email-address-icon" class="block mb-2  mt-4 text-sm font-medium text-gray-900 dark:text-white">Contact Phone</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                   <i class="fa-solid fa-phone"></i>
-
-                </div>
-                <input type="text" 
-                th:field="*{phoneNumber}"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="+91 123456789">
-                </div>
-                <span class="text-red-500"
-                th:if="${#fields.hasErrors('phoneNumber')}"
-                th:errors="*{phoneNumber}"
-                ></span>
-
-                <!-- address  -->
-
-                <div class="mt-3">
-
-                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact Address</label>
-                    <textarea
-                    th:field="*{address}"
-                    rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please provide contact address here..."></textarea>
-                </div>
-
-
-                 <!-- descriiption  -->
-
-                <div class="mt-3">
-
-                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact Description</label>
-                    <textarea 
-                    th:field="*{description}"
-                    rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please provide contact address here..."></textarea>
-                </div>
-
-
-                <!-- social links  -->
-            
-
-                <div class="flex mt-3 gap-2 mb-4">
-                    <div class="w-full">
-                        <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                 <i class="fa-solid fa-link"></i>
-                </div>
-                <input type="text" 
-                th:field="*{websiteLink}"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="www.nexusflow.in">
-                </div>
-                    </div>
-                    <div class="w-full">
-                        <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                 <i class="fa-brands fa-linkedin"></i>
-                </div>
-                <input type="text" 
-                th:field="*{linkedInLink}"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="LinkedIn Profile">
-                </div>
-                    </div>
-
-                  
-                </div>
-
-               
-            <!-- image  -->
-            <div class="mb-3">
-
-                <label class="block mb-2  mt-4 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Contact Image</label>
-                <input 
-                id="image_file_input"
-                th:field="*{contactImage}"
-                
-                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"  type="file">
-
-                <img class="max-h-40 rounded-lg mt-4 mb-4"   
-                th:src="*{picture}" 
-                id="upload_image_preview" alt="">
-            </div>
-
-            <input type="hidden" name="contactId" th:value="${contactId}" />
-
- <!-- favorites  -->
-                
-                <div class="flex items-center mb-3 mt-3">
-                    <input 
-                     th:field="*{favorite}"
-                    type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Favorite?</label>
-                </div>
-                
-
-               <div class="mb-3 flex justify-center space-x-3">
-                    <button type="submit" class="px-3 py-2 rounded bg-blue-700 hover:bg-blue-600 text-white ">Update Contact</button>
-
-                     <button type="reset" class="px-3 py-2 rounded bg-red-700 hover:bg-blue-600 text-white ">Reset</button>
-                </div>
-                </div>
-            </form>
-    
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-
-    <script th:src="@{'/js/admin.js'}"></script>
-    <script>
-        console.log("Hello from add update_contact.html");
-     </script>
+<script th:src="@{'/js/admin.js'}"></script>
+<script>
+  console.log("Hello from update_contact.html");
+  document.getElementById('image_file_input')?.addEventListener('change', function (event) {
+    const preview = document.getElementById('upload_image_preview');
+    if (event.target.files.length > 0) {
+      preview.src = URL.createObjectURL(event.target.files[0]);
+      preview.classList.remove("hidden");
+    }
+  });
+</script>
 </body>
 </html>

@@ -1,119 +1,73 @@
 <!DOCTYPE html>
 <html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}">
-
 <head>
-    <title th:text="${loggedInUser.name}+ ' - NexusFlow | Profile' "> </title>
+  <title th:text="${loggedInUser.name}+ ' - NexusFlow | Profile' "> </title>
 </head>
 
-<body>
-    <div id="content">
-        <div th:if="${loggedInUser}">
-            <div th:replace="~{user/sidebar :: sidebar}"></div>
-        </div>
-
-        <div class="sm:pl-64 pt-20">
-            <div class="text-center">
-
-
-                <div class="flex items-center justify-center">
-
-                    <div class="max w-md mx-auto">
-                        <div class="bg-white shadow-xl rounded-lg py-3">
-                            <div class="photo-wrapper p-2">
-                                <img class="w-32 h-32 rounded-full mx-auto"
-                                    th:src="@{{loggedInUser.profile_pic}}"
-                                    alt="John Doe">
-                            </div>
-                            <div class="p-2">
-                                <h3 
-                                th:text="${loggedInUser.name}"
-                                class="text-center text-xl text-gray-900 font-medium leading-8">Joh Doe</h3>
-                                <div class="text-center text-gray-400 text-xs font-semibold">
-                                    <p>Web Developer</p>
-                                </div>
-                                <table class="text-xs my-3 text-left">
-                                    <tbody>
-                                        <tr>
-                                            <td class="px-2 py-2 text-gray-500 font-semibold">Address</td>
-                                            <td 
-                                            class="px-2 py-2">Chatakpur-3, Dhangadhi Kailali</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="px-2 py-2 text-gray-500 font-semibold">Phone</td>
-                                            <td 
-                                            th:text="${loggedInUser.phoneNumber}"
-                                            class="px-2 py-2"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="px-2 py-2 text-gray-500 font-semibold">Email</td>
-                                            <td 
-                                            th:text="${loggedInUser.email}"
-                                            class="px-2 py-2">john@exmaple.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="px-2 py-2 text-gray-500 font-semibold">About</td>
-                                            <td 
-                                            th:text="${loggedInUser.about}"
-                                            class="px-2 py-2">john@exmaple.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="px-2 py-2 text-gray-500 font-semibold">Address</td>
-                                            <td 
-                                            th:text="${loggedInUser.address}"
-                                            class="px-2 py-2"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="px-2 py-2 text-gray-500 font-semibold">Active?</td>
-                                            <td 
-                                            th:text="${loggedInUser.enabled} ? 'Yes' : 'No'"
-                                            class="px-2 py-2"></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="px-2 py-2 text-gray-500 font-semibold">Email Verified?</td>
-                                            <td 
-                                            th:text="${loggedInUser.emailVerified} ? 'Yes' : 'No'"
-                                            class="px-2 py-2"></td>
-                                        </tr>
-                                         <tr>
-                                            <td class="px-2 py-2 text-gray-500 font-semibold">Phone Verified?</td>
-                                            <td 
-                                            th:text="${loggedInUser.phoneVerified} ? 'Yes' : 'No'"
-                                            class="px-2 py-2"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                               <div class="flex justify-center space-x-5">
-                                 <div class="text-center my-3">
-                                    <a 
-                                    
-                                    class="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"
-                                    th:href="@{'/user/profile/update/' + ${loggedInUser.userId}}">Update Profile</a>
-                                </div>
-                                <div class="text-center my-3">
-                                    <a 
-                                    
-                                    class="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"
-                                    href="#">Change password
-                                </a>
-                                </div>
-                               </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
+<body class="bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 dark:from-gray-900 dark:via-gray-800 dark:to-black min-h-screen">
+  <div id="content">
+    <div th:if="${loggedInUser}">
+      <div th:replace="~{user/sidebar :: sidebar}"></div>
     </div>
 
+    <div class="sm:pl-64 pt-24 px-4 md:px-10">
+      <!-- Profile Card -->
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <!-- Banner / Header -->
+          <div class="h-32 bg-gradient-to-r from-pink-500 via-purple-600 to-orange-500"></div>
 
-    <script>
-        console.log("Hello from profile.html");
-    </script>
+          <!-- Avatar -->
+          <div class="relative -mt-16 flex justify-center">
+            <img class="w-32 h-32 rounded-full border-4 border-white dark:border-gray-900 shadow-lg object-cover"
+                 th:src="@{{loggedInUser.profile_pic}}"
+                 alt="Profile Picture">
+          </div>
+
+          <!-- User Info -->
+          <div class="p-6 text-center">
+            <h3 th:text="${loggedInUser.name}"
+                class="text-2xl font-bold text-gray-900 dark:text-white">
+              John Doe
+            </h3>
+            <p class="text-gray-500 dark:text-gray-400 text-sm font-medium">Web Developer</p>
+          </div>
+
+          <!-- Profile Details -->
+          <div class="px-6 pb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+              <div class="space-y-3">
+                <p><span class="font-semibold text-gray-600 dark:text-gray-300">📍 Address:</span> <span th:text="${loggedInUser.address}">Kathmandu</span></p>
+                <p><span class="font-semibold text-gray-600 dark:text-gray-300">📞 Phone:</span> <span th:text="${loggedInUser.phoneNumber}">+977 9812345678</span></p>
+                <p><span class="font-semibold text-gray-600 dark:text-gray-300">📧 Email:</span> <span th:text="${loggedInUser.email}">john@example.com</span></p>
+              </div>
+              <div class="space-y-3">
+                <p><span class="font-semibold text-gray-600 dark:text-gray-300">📝 About:</span> <span th:text="${loggedInUser.about}">Passionate developer...</span></p>
+                <p><span class="font-semibold text-gray-600 dark:text-gray-300">✅ Active:</span> <span th:text="${loggedInUser.enabled} ? 'Yes' : 'No'">Yes</span></p>
+                <p><span class="font-semibold text-gray-600 dark:text-gray-300">🔐 Email Verified:</span> <span th:text="${loggedInUser.emailVerified} ? 'Yes' : 'No'">Yes</span></p>
+                <p><span class="font-semibold text-gray-600 dark:text-gray-300">📱 Phone Verified:</span> <span th:text="${loggedInUser.phoneVerified} ? 'Yes' : 'No'">No</span></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex justify-center gap-6 pb-6">
+            <a th:href="@{'/user/profile/update/' + ${loggedInUser.userId}}"
+               class="px-5 py-2 bg-gradient-to-r from-pink-500 via-purple-600 to-orange-500 text-white rounded-lg shadow hover:scale-105 transition">
+              ✏️ Update Profile
+            </a>
+            <a href="#"
+               class="px-5 py-2 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-lg shadow hover:scale-105 transition">
+              🔑 Change Password
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    console.log("Profile page loaded...");
+  </script>
 </body>
-
 </html>

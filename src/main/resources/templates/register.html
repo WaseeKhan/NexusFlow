@@ -1,92 +1,112 @@
 <!DOCTYPE html>
 <html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}">
 <head>
-<title>NexusFlow - Register</title>
+  <title>NexusFlow - Register</title>
 </head>
 <body>
-    <div id="content">
-       <div class="grid grid-cols-12 mt-2">
-            <div class="col-span-4 md:col-span-2 lg:col-span-2 xl:col-span-4"></div>
-            <div class="col-span-12 md:col-span-8 lg:col-span-8 xl:col-span-4">
-                     <!-- card -->
-                <div class="block border-t-8 p-6 bg-white  border-blue-700 rounded-xl shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+  <div id="content" class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 
-                    <!-- message here  -->
-                    <div th:replace="message :: messagebox"></div>
+      <!-- Left side: Highlights -->
+      <div class="hidden md:flex flex-col space-y-6 text-center md:text-left">
+        <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white">
+          Join <span class="text-blue-600">NexusFlow</span> Today 🚀
+        </h1>
+        <p class="text-gray-600 dark:text-gray-300 text-lg">
+          Sign up and start managing your contacts securely in the cloud.
+        </p>
+        <ul class="space-y-3 text-gray-700 dark:text-gray-400">
+          <li class="flex items-center space-x-2">
+            <i class="fa-solid fa-check-circle text-green-600 animate-pulse"></i>
+            <span>Seamless contact management</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fa-solid fa-cloud text-blue-600 animate-pulse"></i>
+            <span>Cloud-powered storage & sync</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fa-solid fa-lock text-purple-600 animate-pulse"></i>
+            <span>Secure authentication & data safety</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fa-solid fa-bolt text-yellow-500 animate-pulse"></i>
+            <span>Fast, reliable, and always available</span>
+          </li>
+        </ul>
+        <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">
+          Already have an account?
+          <a th:href="@{/login}" class="text-blue-600 hover:underline">Login here</a>
+        </p>
+      </div>
 
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Register Here</h5>
-                <p class="font-normal text-gray-400 dark:text-gray-400">Let's Start managing Contacts On Clouds.</p>
+      <!-- Right side: Register form -->
+      <div>
+        <div class="block border-t-8 p-8 bg-white border-blue-700 rounded-xl shadow-lg hover:shadow-xl dark:bg-gray-800 dark:border-gray-700 transition mt-25 mb-5">
+          
+          <!-- message -->
+          <div th:replace="message :: messagebox"></div>
 
-                <form 
-                th:action="@{'/do-register'}" 
-                method="post" 
-                th:object="${userForm}"
-                novalidate
-                class="mt-5">
-                    <div class="mb-3">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                        <input th:field="*{name}" type="text"  id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Name Here" required />  
+          <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Register Here
+          </h5>
+          <p class="font-normal text-gray-400 dark:text-gray-400 mb-6">
+            Let’s start managing contacts on the cloud.
+          </p>
 
-                        <p 
-                        th:if="${#fields.hasErrors('name')}"
-                        th:errors="*{name}"
-                        class="text-red-800 px-1 py-2 text-sm"></p>
-                    </div>
+          <form th:action="@{'/do-register'}" method="post" th:object="${userForm}" novalidate class="space-y-4">
 
-                <div class="mb-3">
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                    <input th:field="*{email}" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="info@nexusflow.com" required />
-                     <p 
-                        th:if="${#fields.hasErrors('email')}"
-                        th:errors="*{email}"
-                        class="text-red-800 px-1 py-2 text-sm"></p>
-                </div>
-
-                <div class="mb-3">
-                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                    <input th:field="*{password}" type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-
-                     <p 
-                        th:if="${#fields.hasErrors('password')}"
-                        th:errors="*{password}"
-                        class="text-red-800 px-1 py-2 text-sm"></p>
-                </div>
-
-                   <div class="mb-5">
-                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
-                    <input th:field="*{phoneNumber}" type="text" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                     <p 
-                        th:if="${#fields.hasErrors('phoneNumber')}"
-                        th:errors="*{phoneNumber}"
-                        class="text-red-800 px-1 py-2 text-sm"></p>
-                </div>
-
-                <div class="mb-5">
-                    <label for="about" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">About</label>
-                    <textarea th:field="*{about}" id="about" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write about yourself here...">
-                         
-                    </textarea>
-                    <p 
-                        th:if="${#fields.hasErrors('about')}"
-                        th:errors="*{about}"
-                        class="text-red-800 px-1 py-2 text-sm"></p>
-                </div>
-                <div class="mb-3 flex justify-center space-x-3">
-                    <button type="submit" class="px-3 py-2 rounded bg-blue-700 hover:bg-blue-600 text-white ">Register</button>
-
-                     <button type="reset" class="px-3 py-2 rounded bg-blue-700 hover:bg-blue-600 text-white ">Reset</button>
-                </div>
-                
-                </form>
-                </div>
-
+            <!-- Name -->
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-900 dark:text-white">Name</label>
+              <input th:field="*{name}" type="text" id="name" placeholder="Enter your full name"
+                class="mt-1 w-full p-2.5 rounded-lg border border-gray-300 bg-gray-50 text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required />
+              <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-red-600 text-sm mt-1"></p>
             </div>
-       </div>
-   
+
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-900 dark:text-white">Email</label>
+              <input th:field="*{email}" type="email" id="email" placeholder="info@nexusflow.com"
+                class="mt-1 w-full p-2.5 rounded-lg border border-gray-300 bg-gray-50 text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required />
+              <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-red-600 text-sm mt-1"></p>
+            </div>
+
+            <!-- Password -->
+            <div>
+              <label for="password" class="block text-sm font-medium text-gray-900 dark:text-white">Password</label>
+              <input th:field="*{password}" type="password" id="password" placeholder="********"
+                class="mt-1 w-full p-2.5 rounded-lg border border-gray-300 bg-gray-50 text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required />
+              <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-red-600 text-sm mt-1"></p>
+            </div>
+
+            <!-- Phone -->
+            <div>
+              <label for="phone" class="block text-sm font-medium text-gray-900 dark:text-white">Phone</label>
+              <input th:field="*{phoneNumber}" type="text" id="phone" placeholder="+91 98765 43210"
+                class="mt-1 w-full p-2.5 rounded-lg border border-gray-300 bg-gray-50 text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required />
+              <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-red-600 text-sm mt-1"></p>
+            </div>
+
+            <!-- About -->
+            <div>
+              <label for="about" class="block text-sm font-medium text-gray-900 dark:text-white">About</label>
+              <textarea th:field="*{about}" id="about" rows="3" placeholder="Write something about yourself..."
+                class="mt-1 w-full p-2.5 rounded-lg border border-gray-300 bg-gray-50 text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
+              <p th:if="${#fields.hasErrors('about')}" th:errors="*{about}" class="text-red-600 text-sm mt-1"></p>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex justify-center space-x-3 pt-4">
+              <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-600">Register</button>
+              <button type="reset" class="px-4 py-2 bg-gray-300 text-gray-900 rounded-lg hover:bg-gray-400">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
 
     </div>
-    <script>
-        console.log("Hello from Register.html");
-     </script>
+  </div>
+
+  <script>console.log("Hello from Register.html");</script>
 </body>
 </html>

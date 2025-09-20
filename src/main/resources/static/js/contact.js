@@ -1,79 +1,72 @@
 console.log("contact.js loaded");
+
 const baseUrl = "http://localhost:8080";
+
+// Grab modal element
 const viewContactModal = document.getElementById("view_contact_modal");
-// options with default values
-const options = {
-    placement: 'bottom-right',
-    backdrop: 'dynamic',
-    backdropClasses:
-        'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
-    closable: true,
-    onHide: () => {
-        console.log('modal is hidden');
-    },
-    onShow: () => {
-        console.log('modal is shown');
-    },
-    onToggle: () => {
-        console.log('modal has been toggled');
-    },
-};
 
-// instance options object
-const instanceOptions = {
-  id: 'view_contact_modal',
-  override: true
-};
-
-
-const contactModal = new Modal(viewContactModal, options, instanceOptions);
-
-function openContactModal(){
-    contactModal.show();
+// Open modal
+function openContactModal() {
+  if (viewContactModal) {
+    viewContactModal.classList.remove("hidden");
+    viewContactModal.classList.add("flex");
+  }
 }
 
-function hideContactModal(){
-    contactModal.hide();
+// Hide modal
+function hideContactModal() {
+  if (viewContactModal) {
+    viewContactModal.classList.add("hidden");
+    viewContactModal.classList.remove("flex");
+  }
 }
 
-async function loadConatctData(id){
+// Load contact data by ID and open modal
+async function loadConatctData(id) {
+  console.log("Loading contact:", id);
 
-    console.log(id);
+  try {
+    const response = await fetch(`${baseUrl}/api/contacts/${id}`);
+    const data = await response.json();
 
-    try {
-        const data = await(
-        await fetch(`${baseUrl}/api/contacts/${id}`))
-        .json();
-        document.querySelector("#contact_name").innerText = data.name;
-        document.querySelector("#contact_email").innerText = data.email;
-        // todo load other data
-        openContactModal();
-        console.log(data);
-  
-        
-    } catch (error) {
-        console.log("Error: ", error);
-        
+    // Fill modal fields
+    document.querySelector("#contact_name").innerText = data.name || "No name";
+    document.querySelector("#contact_email").innerText = data.email || "No email";
+    document.querySelector("#contact_phone").innerHTML =
+      `<i class="fa-solid fa-phone mr-1"></i> ${data.phone || "N/A"}`;
+    document.querySelector("#contact_about").innerText = data.about || "";
+
+    // Profile picture
+    const picture = document.querySelector("#contact_picture");
+    if (picture) {
+      picture.src = data.picture || "https://via.placeholder.com/150";
     }
 
+    // Links
+    document.querySelector("#contact_linkedin").href = data.linkedin || "#";
+    document.querySelector("#contact_website").href = data.website || "#";
+
+    // Open modal
+    openContactModal();
+
+    console.log("Contact loaded:", data);
+
+  } catch (error) {
+    console.error("Error loading contact:", error);
+  }
 }
 
-// delet contact 
-
-function deleteContact(id){
-Swal.fire({
-  title: "Do you want to delete the contact?",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonText: "Delete",
-  
-}).then((result) => {
-  /* Read more about isConfirmed, isDenied below */
-  if (result.isConfirmed) {
-    
-    const url = `${baseUrl}/user/contacts/delete/` + id;
-    window.location.replace(url);
-    
-  } 
-});
+// Delete contact with confirmation
+function deleteContact(id) {
+  Swal.fire({
+    title: "Do you want to delete the contact?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Delete",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const url = `${baseUrl}/user/contacts/delete/${id}`;
+      window.location.replace(url);
+    }
+  });
 }
