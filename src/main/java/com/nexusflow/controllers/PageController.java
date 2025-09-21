@@ -92,7 +92,7 @@ public class PageController {
         System.out.println("Do Register Handler");
         // fetch form data
         // UserForm 
-        System.out.println(userForm);
+        
         // validate data 
         if(rBindingResult.hasErrors()){
             System.out.println("Error in validation: "+ rBindingResult.toString());

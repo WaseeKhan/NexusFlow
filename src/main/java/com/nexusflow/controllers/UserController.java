@@ -1,7 +1,5 @@
 package com.nexusflow.controllers;
 
-import java.security.Principal;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +23,6 @@ import com.nexusflow.helpers.Helper;
 import com.nexusflow.helpers.ResourceNotFoundException;
 import com.nexusflow.services.ContactService;
 import com.nexusflow.services.UserService;
-
-import jakarta.annotation.Resource;
 
 @Controller
 @RequestMapping("/user")
