@@ -81,7 +81,7 @@ public class PageController {
         model.addAttribute("userForm", userForm);
         return "register";
     }
-     @GetMapping("/login")
+    @GetMapping("/login")
     public String loginPage(){
         System.out.println("Login Page Handler");
         return "login";
@@ -102,10 +102,12 @@ public class PageController {
         // save to db 
 
         User user = new User();
-        user.setName(userForm.getName());
+        user.setFirstName(userForm.getFirstName());
+        user.setLastName(userForm.getLastName());
+        user.setLastName(userForm.getLastName());
         user.setEmail(userForm.getEmail());
         user.setPassword(userForm.getPassword());
-        user.setAbout(userForm.getAbout());
+        // user.setAbout(userForm.getAbout());
         user.setEnabled(false);
         user.setPhoneNumber(userForm.getPhoneNumber());
         user.setProfilePic("https://res.cloudinary.com/doszwyloa/image/upload/v1758110157/defaultProfile.png");  

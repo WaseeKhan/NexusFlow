@@ -55,7 +55,7 @@ public class OAuthAuthenticationSucessHandler implements AuthenticationSuccessHa
 
             user.setEmail(oAuth2User.getAttribute("email").toString());
             user.setProfilePic(oAuth2User.getAttribute("picture").toString());
-            user.setName(oAuth2User.getAttribute("name").toString());
+            user.setFirstName(oAuth2User.getAttribute("firstName").toString());
             user.setProviderUserId(oAuth2User.getName());
             user.setProvider(Providers.GOOGLE);
             user.setAbout("This account is created from Google");
@@ -69,7 +69,7 @@ public class OAuthAuthenticationSucessHandler implements AuthenticationSuccessHa
             
             user.setEmail(email);
             user.setProfilePic(picture);
-            user.setName(name);
+            user.setFirstName(name);
             user.setProviderUserId(providerUserId); 
             user.setProvider(Providers.GITHUB);
             user.setAbout("This account is created from GitHub");

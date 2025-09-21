@@ -41,7 +41,7 @@ class="flex justify-between items-center px-6 md:px-10 py-4 bg-gradient-to-r fro
     <button id="user-menu-btn" type="button" class="flex items-center focus:outline-none">
       <img th:src="${loggedInUser.profilePic != null} ? @{${loggedInUser.profilePic}} : @{/images/default_profile.png}"
            alt="Profile" class="w-9 h-9 rounded-full border-2 border-white object-cover" />
-      <span class="ml-2 text-white font-medium" th:text="${loggedInUser.name}"></span>
+      <span class="ml-2 text-white font-medium" th:text="${loggedInUser.firstName}"></span>
      
     </button>
     <!-- Dropdown -->

@@ -63,7 +63,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> updateUser(User user) {
         User user2 = userRepository.findById(user.getUserId()).orElseThrow(()-> new ResourceNotFoundException("User not found with id: "+ user.getUserId()));
-        user2.setName(user.getName());
+        user2.setFirstName(user.getFirstName());
+        user2.setLastName(user.getLastName());
         user2.setEmail(user.getEmail());
         user2.setAbout(user.getAbout());
         user2.setPassword(user.getPassword());

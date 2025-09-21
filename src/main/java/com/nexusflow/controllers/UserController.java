@@ -56,7 +56,8 @@ public class UserController {
         UserForm userForm = new UserForm();
         // get old data 
         userForm.setUserId(user.getUserId());
-        userForm.setName(user.getName()); 
+        userForm.setFirstName(user.getFirstName()); 
+        userForm.setLastName(user.getLastName());
         userForm.setEmail(user.getEmail());
         userForm.setAbout(user.getAbout());
         userForm.setPhoneNumber(user.getPhoneNumber());
@@ -87,7 +88,8 @@ public class UserController {
     userForm.setEmail(user.getEmail());
     }
     // Update user fields from form
-    user.setName(userForm.getName());
+    user.setFirstName(userForm.getFirstName());
+    user.setLastName(userForm.getLastName());
     user.setEmail(userForm.getEmail());
     user.setAbout(userForm.getAbout());
     user.setPhoneNumber(userForm.getPhoneNumber());

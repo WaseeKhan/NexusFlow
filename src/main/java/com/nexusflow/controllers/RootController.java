@@ -35,7 +35,7 @@ public class RootController {
 
             System.out.println(user);
             System.out.println("Logged in user found: " + user.getEmail());
-            System.out.println(user.getName());
+            System.out.println(user.getFirstName());
             System.out.println(user.getEmail());
            
             model.addAttribute("loggedInUser", user);

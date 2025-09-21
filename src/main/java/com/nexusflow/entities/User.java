@@ -35,8 +35,9 @@ public class User implements UserDetails{
 
     @Id
     private String userId;
-    @Column(name = "user_name", nullable = false)
-    private String name;
+    @Column(nullable = false)
+    private String firstName;
+    private String lastName;
     @Column(unique = true, nullable = false)
     private String email;
     @Getter(value = AccessLevel.NONE) // disabled getter for password field

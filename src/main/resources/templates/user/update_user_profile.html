@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}">
 <head>
-  <title th:text="${loggedInUser.name}+ ' - NexusFlow | Update Profile' "> </title>
+  <title th:text="${loggedInUser.firstName}+ ' - NexusFlow | Update Profile' "> </title>
 </head>
 <body>
 <div id="content">
@@ -27,14 +27,23 @@
         <form th:action="@{'/user/profile/update/'+${userForm.userId}}"
               method="post" th:object="${userForm}" novalidate class="space-y-5">
 
-          <!-- Name -->
+          <!-- first Name -->
           <div>
-            <label for="name" class="block text-sm font-medium mb-1">Name</label>
-            <input th:field="*{name}" id="name" type="text" required
+            <label for="firstName" class="block text-sm font-medium mb-1">First Name</label>
+            <input th:field="*{firstName}" id="firstName" type="text" required
                    class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"/>
-            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
                class="text-sm text-red-600 mt-1"></p>
           </div>
+            <!-- last name  -->
+          <div>
+            <label for="lastName" class="block text-sm font-medium mb-1">Last Name</label>
+            <input th:field="*{lastName}" id="lastName" type="text" required
+                   class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"/>
+            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+               class="text-sm text-red-600 mt-1"></p>
+          </div>
+
 
           <!-- Email (readonly) -->
           <div>
@@ -67,6 +76,8 @@
                       class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500"
                       placeholder="Provide your address here..."></textarea>
           </div>
+
+          
 
           <input type="hidden" th:field="*{userId}"/>
 
