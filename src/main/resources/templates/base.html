@@ -32,7 +32,14 @@
   </main>
 
   <!-- Footer (always at bottom, outside content) -->
-  <footer>
+
+  <footer th:if="${loggedInUser}">
+    <div 
+    class="bg-gray-100 dark:bg-gray-800 shadow-md mt-auto"
+    th:replace="~{user/user_footer :: user-footer}"></div>
+  </footer>
+
+    <footer th:unless="${loggedInUser}">
     <div th:replace="~{footer :: footer}"></div>
   </footer>
 

@@ -1,25 +1,103 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}" >
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{:: title}, ~{:: script})}">
 <head>
-<title th:text="${loggedInUser.firstName}+ ' - NexusFlow | Dashboard' "> </title>
+  <title th:text="${loggedInUser.firstName}+ ' - NexusFlow | Dashboard'"></title>
 </head>
 <body>
-    <div id="content">
-        <div th:if="${loggedInUser}">
-        <div th:replace="~{user/sidebar :: sidebar}"></div>
-    </div>
+<div id="content" class="flex">
 
-        <div class="sm:pl-64 pt-20 h-1000">
-            <div class="text-center">
-                <h1 class="text-3xl font-bold">Welcome to Dashboard </h1>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos placeat aut necessitatibus expedita soluta doloremque explicabo ut ad eveniet nesciunt, qui cumque incidunt, ratione molestias veritatis debitis! Laboriosam maiores dicta, repellendus maxime quis saepe! Cumque cupiditate sit error recusandae consequuntur porro eligendi nulla. Ipsa dolorum quisquam laboriosam quas? Harum, eveniet!</p>
-            </div>
+  <!-- Sidebar -->
+  <div th:if="${loggedInUser}">
+    <div th:replace="~{user/sidebar :: sidebar}"></div>
+  </div>
+
+  <!-- Main Dashboard Content -->
+  <main class="flex-1 sm:ml-64 pt-24 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <div class="max-w-7xl mx-auto space-y-8">
+
+      <!-- Welcome -->
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">
+          Dashboard
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400 mt-2 sm:mt-0">
+          Welcome back, <span th:text="${loggedInUser.firstName}">User</span> 👋
+        </p>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border-t-4 border-blue-600">
+          <p class="text-sm text-gray-500 dark:text-gray-400">Total Contacts : 
+            <span class="text-sm text-gray-500 dark:text-gray-400" 
+            th:text="${pageContacts.totalElements}"></span>
+          </p>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white" th:text="${totalContacts}">0</h2>
         </div>
-    </div>
-    
 
-    <script>
-        console.log("Hello from dashboard.html");
-     </script>
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border-t-4 border-green-600">
+          <p class="text-sm text-gray-500 dark:text-gray-400">Groups</p>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white" th:text="${totalGroups}">0</h2>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border-t-4 border-purple-600">
+          <p class="text-sm text-gray-500 dark:text-gray-400">Notes</p>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white" th:text="${totalNotes}">0</h2>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border-t-4 border-yellow-600">
+          <p class="text-sm text-gray-500 dark:text-gray-400">Upcoming Tasks</p>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white" th:text="${upcomingTasks}">0</h2>
+        </div>
+      </div>
+
+      <!-- Contacts Growth (Custom Mini Chart with Bars) -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Contacts Growth</h2>
+        <div id="contactsGrowth" class="flex space-x-2 items-end h-48">
+          <!-- Bars will be injected via JS -->
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+        <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Recent Activity</h2>
+        <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+          <li class="py-3 text-gray-700 dark:text-gray-300" th:each="activity : ${recentActivities}">
+            <span th:text="${activity.description}">Added new contact</span>
+            <span class="block text-sm text-gray-400 dark:text-gray-500" th:text="${activity.timeAgo}">2h ago</span>
+          </li>
+          <li th:if="${#lists.isEmpty(recentActivities)}" class="py-3 text-gray-500 dark:text-gray-400">
+            No recent activity
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Lightweight Chart with JS -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const container = document.getElementById("contactsGrowth");
+
+    // Example static data (replace with Thymeleaf if you want dynamic server-side)
+    const months = ["Jan", "Feb", "Mar", "Apr", "May"];
+    const values = [5, 10, 7, 14, 9];
+    const maxVal = Math.max(...values);
+
+    months.forEach((month, i) => {
+      const height = (values[i] / maxVal) * 100;
+      const bar = document.createElement("div");
+      bar.className = "flex-1 flex flex-col items-center";
+      bar.innerHTML = `
+        <div class="w-6 bg-blue-600 dark:bg-blue-400 rounded-t" style="height:${height}%"></div>
+        <span class="text-xs mt-1 text-gray-500 dark:text-gray-400">${month}</span>
+      `;
+      container.appendChild(bar);
+    });
+  });
+</script>
 </body>
 </html>
