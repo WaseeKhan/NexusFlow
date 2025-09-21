@@ -3,11 +3,14 @@ package com.nexusflow.helpers;
 
 
 
+import lombok.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 public class Helper {
+
+
 
     public static String getEmailOfLoggedInUser(Authentication authentication) {
         //  AuthenticatedPrincipal principal = (AuthenticatedPrincipal)authentication.getPrincipal();
@@ -35,8 +38,8 @@ public class Helper {
     }   
 
     public static String getLinkForEmailVerification(String emailTocken){
+        String link =  AppConstant.BASE_URL+"/auth/verify-email?token="+emailTocken;
 
-        String link = "http://localhost:8080/auth/verify-email?token="+emailTocken;
         return link;
 
     }
