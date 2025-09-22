@@ -55,10 +55,11 @@ public class OAuthAuthenticationSucessHandler implements AuthenticationSuccessHa
 
             user.setEmail(oAuth2User.getAttribute("email").toString());
             user.setProfilePic(oAuth2User.getAttribute("picture").toString());
-            user.setFirstName(oAuth2User.getAttribute("firstName").toString());
+            user.setFirstName(oAuth2User.getAttribute("given_name").toString());
             user.setProviderUserId(oAuth2User.getName());
             user.setProvider(Providers.GOOGLE);
             user.setAbout("This account is created from Google");
+            logger.info(authorizedClientRegistrationId);
            
             
           }else if(authorizedClientRegistrationId.equalsIgnoreCase("github")){

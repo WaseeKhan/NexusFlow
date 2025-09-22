@@ -35,3 +35,4 @@ build/
 ### Custom Ignore ###
 NexusFlow.txt
 /src/main/resources/secrets_disabled.properties
+.env

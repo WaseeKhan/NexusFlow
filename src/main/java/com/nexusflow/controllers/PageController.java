@@ -110,8 +110,8 @@ public class PageController {
         // user.setAbout(userForm.getAbout());
         user.setEnabled(false);
         user.setPhoneNumber(userForm.getPhoneNumber());
-        user.setProfilePic("https://res.cloudinary.com/doszwyloa/image/upload/v1758110157/defaultProfile.png");  
-        
+        // user.setProfilePic("https://res.cloudinary.com/doszwyloa/image/upload/v1758110157/defaultProfile.png");  
+       
         User savedUser = userService.saveUser(user);
         System.out.println("Saved User: "+ savedUser);
         // message 
