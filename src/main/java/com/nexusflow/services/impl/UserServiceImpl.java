@@ -34,6 +34,9 @@ public class UserServiceImpl implements UserService {
 
     private Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
 
+    @Autowired
+    private Helper helper;
+
     @Override
     public User saveUser(User user) {
         String userId = UUID.randomUUID().toString();
@@ -49,7 +52,7 @@ public class UserServiceImpl implements UserService {
         User savedUser = userRepository.save(user);
         logger.info("User saved with id: {}", savedUser.getUserId());
 
-        String emailLink = Helper.getLinkForEmailVerification(emailToken);
+        String emailLink = helper.getLinkForEmailVerification(emailToken);
         logger.info("Email verification link: {}", emailLink);
         emailService.sendEmail(savedUser.getEmail(), "Verify Account - NexusFlow", emailLink); 
         return savedUser;

@@ -3,13 +3,17 @@ package com.nexusflow.helpers;
 
 
 
-import lombok.Value;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Helper {
 
+    @Value("${server.baseUrl}")
+    private String baseUrl;
 
 
     public static String getEmailOfLoggedInUser(Authentication authentication) {
@@ -37,8 +41,8 @@ public class Helper {
         }
     }   
 
-    public static String getLinkForEmailVerification(String emailTocken){
-        String link =  AppConstant.BASE_URL+"/auth/verify-email?token="+emailTocken;
+    public String getLinkForEmailVerification(String emailTocken){
+        String link = this.baseUrl+"/auth/verify-email?token="+emailTocken;
 
         return link;
 
