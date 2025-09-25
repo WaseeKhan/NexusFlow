@@ -115,7 +115,7 @@ public class PageController {
         User savedUser = userService.saveUser(user);
         System.out.println("Saved User: "+ savedUser);
         // message 
-        Message message = Message.builder().content("Registration Successful !! Please Login..").type(MessageType.blue).build();
+        Message message = Message.builder().content("A verification link has been sent to your email id, please verify and login.").type(MessageType.blue).build();
         session.setAttribute("message", message);
         //redirect
         return "redirect:/register";
