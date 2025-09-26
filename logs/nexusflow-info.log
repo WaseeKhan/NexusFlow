@@ -197,3 +197,42 @@ java.nio.channels.AsynchronousCloseException: null
 2025-09-26 17:37:30 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
 2025-09-26 17:37:30 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
 2025-09-26 17:37:32 WARN  o.t.s.p.AbstractStandardFragmentInsertionTagProcessor - [THYMELEAF][http-nio-8080-exec-7][login] Deprecated unwrapped fragment expression "message :: messagebox" found in template login, line 48, col 16. Please use the complete syntax of fragment expressions instead ("~{message :: messagebox}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-09-26 17:54:39 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=1m44s844ms).
+2025-09-26 17:57:21 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=2m41s979ms).
+2025-09-26 18:01:11 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=3m50s234ms).
+2025-09-26 18:03:31 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=2m19s699ms).
+2025-09-26 18:05:40 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=2m9s330ms).
+2025-09-26 18:07:19 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=1m39s124ms).
+2025-09-26 18:10:01 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=2m12s86ms).
+2025-09-26 18:14:35 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=4m33s431ms).
+2025-09-26 18:30:06 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m31s497ms).
+2025-09-26 18:34:37 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=4m570ms).
+2025-09-26 18:37:06 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=2m29s17ms).
+2025-09-26 18:40:09 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=2m33s232ms).
+2025-09-26 18:55:40 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m30s695ms).
+2025-09-26 19:01:21 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=5m40s885ms).
+2025-09-26 19:05:46 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=4m25s109ms).
+2025-09-26 19:09:35 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=3m48s625ms).
+2025-09-26 19:11:06 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=1m31s59ms).
+2025-09-26 19:13:16 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=1m40s73ms).
+2025-09-26 19:15:03 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=1m47s346ms).
+2025-09-26 19:19:07 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=4m3s718ms).
+2025-09-26 19:34:37 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m30s577ms).
+2025-09-26 19:36:23 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=1m45s915ms).
+2025-09-26 19:38:05 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=1m41s650ms).
+2025-09-26 19:54:08 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m33s575ms).
+2025-09-26 20:09:41 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m32s319ms).
+2025-09-26 20:25:12 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m31s343ms).
+2025-09-26 20:40:43 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m31s321ms).
+2025-09-26 20:55:03 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=13m49s131ms).
+2025-09-26 21:10:33 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m30s631ms).
+2025-09-26 21:26:35 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m31s296ms).
+2025-09-26 21:42:05 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m30s827ms).
+2025-09-26 21:56:08 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=13m32s711ms).
+2025-09-26 22:11:38 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m30s316ms).
+2025-09-26 22:27:40 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m31s115ms).
+2025-09-26 22:33:38 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=5m58s102ms).
+2025-09-26 22:36:25 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=2m47s296ms).
+2025-09-26 22:51:56 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m31s262ms).
+2025-09-26 22:54:10 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=2m13s626ms).
+2025-09-26 22:56:14 WARN  o.t.s.p.AbstractStandardFragmentInsertionTagProcessor - [THYMELEAF][http-nio-8080-exec-6][login] Deprecated unwrapped fragment expression "message :: messagebox" found in template login, line 48, col 16. Please use the complete syntax of fragment expressions instead ("~{message :: messagebox}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
